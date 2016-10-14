@@ -1,0 +1,329 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\nonstopmode
+\documentclass[12pt,fleqn]{book} % Default font size and left-justified equations
+\renewcommand*{\rmdefault}{Roboto}
+%----------------------------------------------------------------------------------------
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+
+
+
+\begin{document}	
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate [below=12cm] (midpoint) at (current page.north);
+  \node at (current page.north west)
+  {\begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north west,inner sep=0pt] at (0,0){ \resizebox{!}{30cm}{\includegraphics[width=\paperwidth]{back2}}}; % Background image
+      \draw[anchor=north] (midpoint) node [fill=ocre!15!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\Huge\centering \textsf{Rapport de stage de fin d'études} \\[15pt] % Book title
+      {\Large Service Sédi du département de l'Irfu au CEA de Saclay}\\[20pt] 
+      {\Huge Optimisation et Automatisation d'une chaîne de réception radio VHF}}}; 
+  \end{tikzpicture}};
+\end{tikzpicture}
+
+\title{}
+\author{\bsc{Rodolphe} - \bsc{Jeunehomme}}
+
+\vfill
+
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent \textsc{Rédigé par Rodolphe Jeunehomme }\\ % Publisher
+\noindent \textsc{~\\Sous la direction de M. Jean-Paul Lefèvre et M. Bertrand Cordier}\\ % Publisher
+
+\noindent \textit{Télécom-Bretagne, Stage de fin d'étude 2016} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\chapterimage{back8} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+
+
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\pagestyle{fancy} % Print headers again
+\setcounter{part}{-1}
+\part{Introduction}
+\setcounter{chapter}{0}
+~\\\\
+\part{La chaîne de réception radio}
+\setcounter{chapter}{0}
+La chaîne de réception radio sera utilisée pour la réception des messages d'alertes émis par le satellite \emph{Svom} via un canal à VHF 137MHz. Ce récepteur sera installé autour du monde le long de l'équateur afin que le satellite soit à une élévation suffisante par rapport à l'antenne réceptrice lors de l'acquisition des données radios.
+~\\\\La figure~\ref{schema_chaine} ci-dessous illustre les différents composants de la chaîne de réception radio.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=12cm,height=10cm]{schema_chaine.png}
+	\caption{\label{schema_chaine} \underline{La chaîne de réception radio VHF}}
+\end{figure}
+Ce chapitre est consacré à la description et l'étude de la chaîne de réception radio du signal qui sera émis par le satellite \emph{Svom}.
+
+\chapter{Les antennes testées pour la chaîne de réception radio} 
+~\\\\Deux prototypes d'antenne ont été installées sur le toît du batiment du service Sédi du CEA de Saclay afin de comparer leur performance par rapport à la chaîne de réception radio à mettre en place.
+~\\\\Afin d'évaluer les performances de ces antennes, la réception d'un signal radio VHF provenant d'un satellite météo NOAA (plus particulièrement le satellite \emph{NOAA-19}) est effectuée lors de chaque passage du satellite. Les courbes en gain sont ensuite tracées directement en sortie du dispositif et les données satellites prenant la forme d'une image au format APT sont décodées afin de pouvoir comparer les performances des parties analogiques et numériques de la chaîne de réception radio de chaque antenne.
+\section{L'antenne quadrifilaire à hélices (QHA en anglais pour Quadrifilar Helix Antenna)}
+~\\\indent L' antenne de réception radio \emph{Quadrifilar Helix Antenna} (QHA) est souvent utilisée pour la réception de données satellites pour son diagramme de rayonnement omnidirectionnel ainsi que pour son faible côut et sa facilité de conception.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=10cm,height=10cm]{quadrifilaire.jpg}
+	\caption{\label{QHA} \underline{Antenne Quadrifilaire à Hélices}}
+\end{figure}
+~\\
+\subsubsection{Les dimensions de l'antenne quadrifilaire à hélices}
+~\\
+Cette antenne est composée de deux boucles hélicoïdales bifilaires effectuant une rotation à 90° autour d'un axe commun vertical favorisant les angles latéraux (idéal pour la réception d'un signal satellite). La polarisation est circulaire droite (les spires tournent dans le sens inverse des aiguilles d'une montre). Les bornes de chaque hélice sont alimentées en opposition de phase et les courants circulants dans les deux boucles sont en quadrature de phase. L'alimentation de l'antenne se fait par le haut de l'antenne. Les performances de ce type d'antenne diminuent fortement pour une élévation du satellite au dessous de 20° par rapport à l'horizon.
+~\\\\La longueur \emph{L} des hélices métalliques est caractérisée par leur longueur résonnante de \(\frac{\lambda}{4}\). C'est à dire à 137MHz:
+$$ L\simeq\frac{c}{4*f}\simeq\frac{3*10^8}{4*137*10^6}\simeq54 cm $$, où \emph{c} est la vitesse de propagation d'une onde électromagnétique dans le vide et \emph{f} la fréquence du signal radio à réceptionner.
+~\\\\La taille \emph{L} de l'hélice en hauteur et sa largeur \emph{W} sont caractérisées par le rapport \emph{k}, \(\frac{largeur}{hauteur}\)=0.5 dans notre cas, c'est à dire pour la réception d'un signal VHF à 137 MHz : 
+$$ L\simeq54 cm $$
+et 
+$$ W\simeq27 cm. $$
+\section{L'antenne Turnstile}
+~\\\indent L'antenne \emph{Turnstile} est l'antenne la plus simple pour la réception de données satellites. En théorie moins efficace que l'antenne \emph{QHA} pour la réception des données satellite, elle présente néanmoins l'avantage de pouvoir l'acquérir à faible coût dans le commerce (prix compris entre 70\$ et 80\$).
+~\\\\
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=10cm,height=10cm]{turnstile.jpg}
+	\caption{\label{turnstile} \underline{Antenne Turnstile}}
+\end{figure}
+~\\
+\subsubsection{Les dimensions de l'antenne Turnstile}
+~\\L'antenne \emph{Turnstile} est une antenne composée de 2 dipôles demie-onde, disposés à 90° l'un par rapport à l'autre et sur le même plan, c'est à dire en croix. L'alimentation de ceux-ci se fait grâce à un système de déphasage 1/4 d'onde. Les dipôles sont disposés à plat et orientés vers le ciel et la polarisation est la même que pour l'antenne quadrifilaire à hélices (circulaire droite).
+~\\\\La longueur \emph{L} des dipôles est environ égale à \(\frac{\lambda}{2}\). C'est à dire a 137 MHz:
+$$ L\simeq\frac{c}{2*f}\simeq \frac{3*10^8}{137*10^6*2}\simeq1 m$$, où \emph{c} est la vitesse de propagation d'une onde électromagnétique dans le vide et \emph{f} la fréquence du signal radio à réceptionner.
+~\\\\
+\chapter{La chaîne de réception radio (hors antennes)}
+Les antennes présentées dans la section précédente sont chacunes équipées d'un système embarqué composé d'un filtre coupe bande analogique, d'un amplificateur de gain à faible bruit, d'un récepteur SDR de réception radio et d'un carte Raspberry PI3. Ce système embarqué a été entièrement conceptionné au CEA de Saclay sous la direction de mon responsable de stage M. Jean-Paul Lefèvre et M. Thomas Chaminade pendant la pèriode précédent mon stage.
+Ce système embarqué consiste en un boitier, illustré sur la photo~\ref{boîtier}, localisé sur le pied de chaque antenne.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=7cm]{chaine_radio.png}
+	\caption{\label{boîtier} \underline{Système embarqué de réception radio}}
+\end{figure}
+Le signal est capté par l'antenne puis passe au travers du filtre coupe bande. Il est ensuite amplifié et transposé en fréquence pour pouvoir être traité par le récepteur SDR. La sortie du récepteur SDR est ensuite dirigée vers la Raspberry PI. L'alimentation de lantenne s'effectue à l'aide d'une POE (\emph{Power over Ethernet}).
+\section{Le filtre passe-bande}
+~\\\indent Le filtrage du signal radio se fait directement de manière analogique avant que celui-ci soit traité numériquement par le récepteur SDR et la carte Raspberry PI 3. Ceci permet d'éviter les pertes d'informations dûent à un unique filtrage numérique et d'obtenir l'intégralité de la partie du signal centrée au dessus de 137 MHz afin de faciliter la transformation du signal analogique en signal numérique par le récepteur SDR.
+~\\\\Le filtre passe-bande consiste en une succession d'un filtre passe-bas et d'un filtre passe-haut. Les filtres forment un filtre passe-bande laissant passser les fréquences de 132 MHz à 560 MHz.
+\section{Le LNA (\emph{Low Noise Amplifier})}
+~\\\indent Le LNA amplifie le gain du signal de 20 dB et peut traiter des signaux allant de quelques MHz à 2 GHz. Le LNA possède un traversé en Pi pour réduire les perturbations extérieures et une capacité de 1mF a été rajoutée afin d’améliorer le bruit.
+\section{L'alimentation par POE (\emph{Power Over Ethernet}) .}
+~\\\indent L'alimentation par POE permet d'alimenter l'antenne par le biais du câble ethernet chargé de communiquer les données. Elle reçoit une tension de 48 Volts qu'elle transforme par la suit en 5 Volts pour alimenter l'antenne et la carte Raspberry PI 3.
+~\\\\Ce procédé est innovant comparé à ce qui se fait habituellement en radio. Néanmoins, l'alimentation peut souvent être une source de bruit venant s'ajouter au signal receptionné par l'antenne. Habituellement, une alimentation simple, comme une pile, est utilisée en radio pour limiter ce bruit. Il s'agit donc de tester un nouveau procédé d'alimentation qui offre toutefois l'avantage de combiner l'accès internet avec celui de l'alimentation ce qui peut simplifier grandement l'installation  
+de l'antenne dans des zones difficiles d'accès (comme par exemple dans certaines zones le long de l'équateur où les antennes sont prévues d'être installées).
+~\\\\L’alimentation de l’antenne et de son électronique nécessite une tension de 5 V. Le Raspberry nécessite 5 W et le LNA 250 mW. La POE alimente directement la Raspberry pi. Dans la Raspberry Pi, l’alimentation est filtrée puis envoyée au processeur ainsi que sur les connecteurs USB. Le récepteur SDR et le LNA sont alimenté par l’USB.
+\section{Le récepteur SDR (\emph{Software Defined Radio})}
+~\\\indent Dans la chaîne de réception radio, le récepteur SDR a pour rôle d'abaisser la fréquence du signal reçu par l'antenne et de numériser le signal. Le signal arrive par voie analogique dans le récepteur SDR qui va ensuite échantillonner les données en \emph{Mega Sample Per Seconds} (MSPS) et les transmettre via un port USB à la Raspberry PI 3.
+\subsection{Le récepteur SDR \emph{DX-PATROL}}
+Le récepteur SDR \emph{DX-PATROL}\footnote{La fiche technique du récepteur DX-PATROL est donnée en annexe dans la section \emph{Les récepteurs SDR}.} est le récepteur initialement installé sur les deux premiers prototypes d'antenne pour tester la réception d'un signal satellite. 
+~\\\\Il peut recevoir des signaux compris dans la bande 100kHz-2GHz. La réception du signal à 137.1MHz du satellite météo \emph{NOAA-19} est donc possible avec ce récepteur. 
+~\\\\Ce récepteur peut échantillonner le signal reçu jusqu'à 3 MSPS (Méga Samples Per Seconds). Pour la réception des images APTs du satellite météo \emph{NOAA-19}, 2 MSPS sont suffisants pour une bonne qualité des données satellites une fois décodées.
+~\\\\Son prix varie entre 90\$ et 100\$.
+~\\\\Les antennes sur lesquelles le récepteur \emph{DX-PATROL} a été installé ont toutes deux été capable de recevoir et décoder le signal du satellite \emph{NOAA-19}.
+~\\\\Néanmoins, un des récepteurs est tombé en panne après peu de temps de fonctionnement. La fiabilité du \emph{DX-PATROL} n'est donc pas suffisante pour lui permettre de fonctionner à répétition dans un environnement extérieur.
+\subsection{Le récepteur SDR \emph{AIRSPY-R2}}
+Pour palier à ce manque de fiabilité, un autre récepteur SDR a été installé sur l'antenne \emph{Turnstile} à la place du \emph{DX-PATROL} défectueux. La mise en place et le bon fonctionnement de ce récepteur sur l'antenne a été l'objet d'une partie de mon stage.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=7cm,height=4cm]{airspy_pic.png}
+	\caption{\label{airspy_pic} \underline{Récepteur SDR AIRSPY-R2}}
+\end{figure}
+~\\Le récepteur \emph{AIRSPY}\footnote{La fiche technique du récepteur AIRSPY est donnée en annexe dans la section \emph{Les récepteurs SDR}.} fonctionne dans la même bande de fréquences que le \emph{DX-PATROL}. Sur la fiche technique on peut voir que le gain moyen ajouté à un signal RF est d'environ 35 dBm. Tandis que sur la fiche technique du \emph{DX-PATROL} le gain maximal pouvant être ajouté à un signal RF est de 45 dBm.
+En terme de performance sur le gain ajouté au signal lors de sa conversion anologique-numérique, le récepteur SDR \emph{AIRSPY} semble similaire au \emph{DX-PATROL}.
+~\\\\Sa faculté d'échantillonnage en revanche dépasse largement celle du \emph{DX-PATROL} puisqu'elle s'étend de 2.5 MSPS jusqu'à 10 MSPS. Mais cette caractéristique dépend énormément des capacités de traitement des données de la Raspberry PI chargés de traiter les données envoyées via USB par le \emph{AIRSPY}. De plus, dépassé un certain seuil, la distinction entre un signal échantillonné à ce seuil et un signal échantillonné à un nombre de MSPS trop élevé ne change rien à la qualité des données reçues.
+Le taux d'échantillonnage a donc été fixé à son minimum de 2.5 MSPS afin de se rapprocher le plus de celui utilisé par le \emph{DX-PATROL} et donc de pouvoir, à terme, comparer plus pertinemment les deux modèles de récepteur SDR et de ne pas faire surchauffer la Raspberry PI.
+\subsection{Test des performances du récepteur SDR \emph{AIRSPY-R2}}
+Afin d'évaluer pertinemment les performances du récepteur SDR \emph{AIRSPY} (sans se baser uniquement sur la documentation), une première chaîne de réception radio a été mise en place à partir d'une simple antenne radio FM de bureau sur le poste de travail m'ayant été assigné pour la durée du stage.
+~\\\\Normalement, le récepteur SDR \emph{AIRSPY} n'a pas besoin de drivers pour fonctionner car il est prévu pour fonctionner à partir d'un système d'exploitation Windows. En effet, les concepteurs du logiciel Windows \emph{SDR\#} sont les mêmes que les concepteurs du récepteur \emph{AIRSPY}. Hors, le système sur lequel le récepteur est prévu de fonctionner est une Raspberry PI fonctionnant sous le système d'exploitation Linux (moins encombrant et gourmand en processus que Windows pour un système embarqué). Heureusement, une bibiliothèque de drivers Linux est téléchargeable en open-source via le site internet d'\emph{Airspy}\footnote{Source \emph{www.airspy.com}}. L'installation des drivers \emph{AIRSPY} pour une distribution Linux sera abordée plus en détails dans la partie XXXXXX.
+~\\\\Pour le test, le système d'exploitation Linux a donc été installé sur le poste de travail afin de reproduire au mieux l'environnement numérique embarqué sur chaque antenne.
+~\\\\Le logiciel \emph{Gnuradio-Companion} (disponible dans les packages de la base apt d'Ubuntu) associé à la librairie \emph{rtl-sdr} permet l'utilisation du récepteur \emph{AIRSPY} sur un système Linux. 
+~\\\\L'image~\ref{gnu_airspy} ci-après illustre la chaîne de réception radio FM utilisée pour le test.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=12cm,height=8cm]{Gnuradio_rtl_sdr.png}
+	\caption{\label{gnu_airspy} \underline{Chaîne de réception radio FM sous Gnuradio}}
+\end{figure}
+L'objectif de ce \emph{flow-graph} Gnuradio est de pouvoir écouter la radio FM à la fréquence 105.1 MHz. Le fonctionnement des différents blocs composant cette chaîne de réception radio sera expliqué en détails dans la partie XXXXX. Les blocs \emph{WX GUI FFT Sink} permettent de tracer le gain du signal en sortie de chaque bloc en fonction de la fréquence.
+~\\\\La figure~\ref{airspy_fft} ci-dessous illustre le gain du signal réceptionné par l'antenne et traité par le récepteur SDR avant et après le filtre passe bas numérique permettant d'isoler la fréquence de la station FM désirée.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=12cm,height=8cm]{airspy_fft.png}
+	\caption{\label{airspy_fft} \underline{FFT du signal radio FM avec le récepteur AIRSPY-R2}}
+\end{figure}
+\subsubsection{Observations}
+Le gain du signal est d'environ -30dB à la fréquence 105.1 MHz comme illustré sur le graphe située le plus en haut de l'image~\ref{airspy_fft} (le filtre passe-bas ne rajoute pas de gain au signal). Le plancher de bruit est quant à lui situé aproximativement entre -60dB et -50dB comme illustré sur le graphe du bas. La différence de gain du signal à la fréquence 105.1 MHz en comparaison avec celui du plancher de bruit sélève donc à hauteur de 30 dB pour un taux d'échantillonnage de 2.5 MSPS.
+La valeur du rapport signal sur bruit est donc plus basse que celle indiquée dans la documentation du \emph{AIRSPY-R2}\footnote{Voir la partie \emph{Annexes} section \emph{Récepteurs SDR}} qui est de 64dB de SNR pour un echantillonnage de 10 MSPS mais reste toutefois une valeur suffisante pour réceptionner un signal radio qui soit de bonne qualité.
+~\\\\En sortie du bloc \emph{audio sink}, le signal radio est tout à fait audible une fois echantillonné à la fréquence à laquelle fonctionne la carte son du poste de travail utilisé pour ce test.
+\subsubsection{Conclusion du test}
+Le test a montré que le récepteur \emph{AIRSPY-R2} fonctionne bien pour la réception d'un signal radio FM avec une simple antenne de bureau. De plus, le test a permis de montrer qu'il était également possible d'utiliser ce récepteur avec un distribution Linux.
+Il est donc tout à fait envisageable de pouvoir l'intégrer sur l'un des prototypes d'antenne réceptrice des signaux VHF émis depuis un satellite.
+
+\chapter{Validation de la chaîne de réception radio}
+Afin de valider la chaîne de réception radio prototypée avec deux types d'antenne différents, un test de réception des données VHF du satellite météo NOAA-19 a été effectué. Ce satellite émet à la même fréquence que celle prévue par le satellite \emph{Svom}. Ce test a été validé avant mon arrivée dans l'entreprise.
+La chaîne de réception radio a donc pour objectif de réceptionner les images au format APT (\emph{Automatic Picture Transmission}) transmises par le satellite \emph{NOAA-19}.
+\section{Le satellite scientifique météo NOAA-19}
+~\\\indent La trajectoire du satellite NOAA-19\footnote{Source depuis la page web \emph{https://en.wikipedia.org/wiki/NOAA-19}} suit une orbite polaire située à environ 850 km de la Terre et en fait le tour en 102 min. La durée de la visibilité d'un passage est d'approximativement 15 min pour une antenne réceptrice localisée dans l'enceinte du CEA.
+~\\\\Le satellite émet un signal à 2400 Hz audible modulé à la fréquence de 137.1 MHz pour être transmis vers la Terre. L'information est transmise sur 2 voies chacune codée sur 8 bits. Les 2 voies correspondent à la transmission de 2 images: une pour l'infrarouge et l'autre pour le visible.
+\section{Le format d'image APT (Automatic Picture Transmission)}
+~\\\indent La figure~\ref{apt} ci-après illustre la description du format d'image APT transmis par le satellite NOAA-19\footnote{Source depuis la page web \emph{https://en.wikipedia.org/wiki/Automatic\_picture\_transmission}}.
+~\\\\
+~\\\\
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=12cm,height=12cm]{apt.png}
+	\caption{\label{apt} \underline{Le format d'image Automatic Picture Transmission}}
+\end{figure}
+Le satellite NOAA-19 transmet des lignes de 2048 pixels à un rythme de 2 lignes par seconde.
+\section{La réception du signal émis par le satellite NOAA-19}
+\subsection{Avec le récepteur SDR \emph{DX-PATROL}}
+Le signal est reçu par l'antenne \emph{QHA} puis filtré et amplifié par la partie analogique de la chaîne de réception radio pour être ensuite échantillonné par le récepteur SDR (le récepteur utilisé en premier lieu était le \emph{DX-PATROL}) et envoyé sous formes de données logiques à la Raspberry PI. Les données reçues par la Raspberry PI prennent la forme d'un fichier \emph{.raw} reconvertit ensuite en fichier \emph{.wav} et réechantillonné soit à la fréquence de 48 Khz, si l'on souhaite écouter le bip caractéristique du signal satellite sur une sortie audio, soit à la fréquence de 11025 KHz si l'on souhaite pouvoir décoder l'image APT.
+~\\Les images~\ref{visible} et~\ref{ir} ci-après représentent les images visible et infrarouge au format APT reçues par la chaîne de réception radio une fois décodées.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=8cm,height=10cm]{visible.png}
+	\caption{\label{visible} \underline{Réception d'une image APT dans le visible avec le DX-PATROL}}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=8cm,height=10cm]{ir.png}
+	\caption{\label{ir} \underline{Réception d'une image APT dans l'infrarouge avec le DX-PATROL}}
+\end{figure}
+\subsection{Avec le récepteur SDR \emph{AIRSPY-R2}}
+Un des objectifs de mon stage était de tester le bon fonctionnement du récepteur SDR en bande VHF. Après avoir tester son bon fonctionnement en bande FM sur un environnement Linux, ce récepteur a été installé sur l'antenne \emph{Turnstile}.
+~\\\\L'acquisition des données et le réglage du récepteur s'effectue à l'aide d'un \emph{flow-graph} du logiciel Gnuradio-Companion. Tout comme avec le \emph{DX-PATROL}, le signal est converti en fichier \emph{.wav} puis décodé en image APT. L'image~\ref{airspy_test} ci-après illustre les images APT reçues par l'antenne \emph{Turnstile} et le récepteur SDR \emph{AIRSPY-R2}:
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=10cm]{airspy_test.jpg}
+	\caption{\label{airspy_test} \underline{Réception d'une image APT avec l'AIRSPY}}
+\end{figure}
+Le réglage du récepteur \emph{AIRSPY} a été validé étant donné qu'il permet une bonne conversion en donnés binaires du signal reçu par l'antenne. En effet, ces images montrent que le décodage en image APT est possible et de plutôt bonne qualité.
+~\\\\Néanmoins des ligne d'interférence sont présentes sur l'image. La présence de ces lignes bruitées sur les images décodées à partir des deux types de récepteur SDR ont permis d'exclure l'hypothèse d'un mauvais fonctionnement du récepteur SDR utilisé (sans exclure le manque de fiabilité du \emph{DX-PATROL} comparé au \emph{AIRSPY}). 
+\chapter{Etudes et solutions d'amélioration de la qualité du signal réceptionné par l'antenne}
+\section{Identification des problèmes de réception potentiels dans la chaîne de réception radio}
+~\\\indent Avec les deux récepteurs SDR, le signal a bien été reçu par la chaîne avec une qualité suffisante pour pouvoir être décodé en image APT. La chaîne de réception radio est donc valide.
+~\\\\Le bruit situé en haut et en bas de l'image dépend de la qualité du décodage et peut être supprimé en utilisant un logiciel de décodage autre que le logiciel \emph{atpdec}, utilisé pour décoder ces images. Ce logiciel de décodage reste toutefois très utile car il peut s'exécuter uniquement en lignes de commandes via un terminal ce qui sera très utile par la suite pour l'automatisation de l'acquisition des données par la chaîne de réception radio.
+~\\\\Néanmoins, comme on peut le constater sur les deux images, certaines lignes sont mal reçues ou décodées par la chaîne de réception radio. En particulier les lignes bruitées situées au centre de l'image. Les interférences peuvent provenir de plusieurs manières:
+~\\\\
+\begin{itemize}
+ \item[$\bullet$] Le signal reçu interfère avec un autre signal de la même fréquence présent dans la zone de réception.
+ \item[$\bullet$] L'alimentation peut générer du bruit parasite pouvant perturber le signal reçu par la chaîne.
+ \item[$\bullet$] Un mauvais réglage des paramètres de l'antenne réceptrice peut alétérer le signal reçu.
+ \item[$\bullet$] Les conditions environnementales et les caractéristiques du passage du satellite NOAA-19 n'était pas optimale au moment de la transmission de la réception du signal par l'antenne.
+\end{itemize}
+~\\\\
+Après des recherches approfondies sur internet\footnote{Source à l'addresse www.satsignal.eu .}, il apparaît que dans le premier cas, les interférences semblent faire partie de l'image elle-même et ne lui sont pas superposées. Dans l'image~\ref{visible}, ce type d'interférences semble pouvoir se constater par exemple à hauteur de la Grèce sur l'image. Par ailleurs, en écoutant certains signaux acquis et échantillonnés à 48 KHz, des voix semblant provenir d'une autre fréquence proche peuvent se faire entendre.
+Ma conclusion est qu'il pourrait s'agir de la source de ce type d'interférences. Malheureusement, la durée du stage ne m'a pas permis de pouvoir démontrer cette hypothèse.
+~\\\\Dans le cas où les interférences sont causées par le bruit de l'alimentation, les interférences apparaissent le plus souvent superposées à l'image. Sur l'image visible reçue par la chaîne, certaines lignes brouillées au centre de l'image pourraient correspondre à cette description. Une solution simple pour pouvoir tester cette hyphothèse serait de remplacer l'alimentation par POE par une simple pile générant moins de perturbations.
+Ce test n'a pas encore été effectué pendant la durée de mon stage.
+~\\\\Le réglage des paramètres de la chaîne de réception radio analogique est prévu pour ne filtrer que les fréquences au dessus de 137 MHz jusqu'à 560 MHz. Afin de constater l'influence de ses paramètres, un moyen d'identifier la provenance des interférences et de déterminer si celles-ci sont dues au réglage de l'antenne serait de resserrer la largeur de bande du filtre passe-bande. Néanmoins cela nécessiterait de créer un autre prototype d'antenne utilisant d'autres filtres pour le passe-bande.
+\section{Etude de l'influence des caractéristiques d'un passage du satellite NOAA-19 sur la qualité des images reçues}
+~\\\indent Une étude à partir d'un traitement des images APTs reçues par la chaîne de réception a été effectuée à la demande de mon maître de stage afin d'identifier les zones de bruit sur les images.
+~\\\\L'objectif est d'établir une corrélation entre les paramètres caractérisant les conditions du satellite lors de l'emission des images APTs (élévation du satellite au moment de la réception du signal, ses heures de passages, les conditions climatiques, etc.) et la qualité des images receptionnées.
+~\\\\Pour ce faire, un script python d'analyse par transformées de Fourier des images APTs réceptionnées a été developpé. Ce script utilise la librairie \emph{numpy} pour le calcul des transformées de Fourier. 
+\subsection{Tests de la librarie python \emph{Numpy}}
+Afin de s'assurer du bon fonctionnement de cette librairie, il convient de tester son application à des fonctions simples. Une simple fonction porte a donc été implémentée en python pour effectuer ce test.
+~\\\\Le code commenté utilisé pour générer une fonction porte et calculer sa transformée de Fourier est donnée en annexe\footnote{Voir partie \emph{Annexes} section \emph{Tests de la librairie Numpy}}.
+~\\\\Le plot du tableau de valeurs \emph{array\_fft\_abs} de la fonction porte et de la fonction porte elle-même est illustré sur la figure~\ref{fft_test} ci-après:
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=8cm]{fft_test.png}
+	\caption{\label{fft_test} \underline{Test de la librairie python numpy}}
+\end{figure}
+La transformée de Fourier d'une fonction porte étant un sinus cardinal on retrouve bien le résultat attendu après l'exécution du script python basé sur la librairie Numpy.
+~\\Le test a également été effectué pour une fonction sinus afin de s'assurer que même en complexifiant la fonction de départ, le script effectue correctement les calculs de transformées de Fourier. L'utilisation de cette librairie est donc validée.
+\subsection{Le script python \emph{apt_fft.py}}
+L
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=12cm]{script_apt.png}
+	\caption{\label{script_apt} \underline{Le script apt\_fft.py}}
+\end{figure}
+
+~\\\\les caractéristiques des passages du satellite NOAA-19 on été acquises à l'aide de l'interface graphique \emph{Gpredict} du logiciel open-source \emph{Predict} pour Linux.
+
+
+
+
+
+\setcounter{part}{-5}
+\part{Annexes}
+\section{Les récepteurs SDR}
+\subsection{Le récepteur \emph{DX-PATROL}}
+La source de cette fiche technique est à l'adresse web \emph{http://www.dxpatrol.pt/images/Docs/ DXpatrolSDRradioMKIII.pdf}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm,height=7cm]{dx_patrol.png}
+ \end{figure}
+\subsection{Le récepteur \emph{AIRSPY}}
+La source de cette fiche technique est à l'adresse web \emph{http://airspy.com/airspy-r2/}.
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm,height=10cm]{airspy.png}
+ \end{figure}
+~\\\\
+\section{Tests de la librairie Numpy}
+\begin{python}
+ #Fonction Porte
+ pas = 0.01
+ array = numpy.arrange(0, 40+p, p)
+ taille = len(array)
+ ge = 1/p#
+ g = numpy.arrange(0, taille)*ge/taille
+ for i in range (len(array)):
+     if(i > 9.99 and i <= 30.0):
+          array[i] = 1
+      else:
+          array[i]=0
+ #Transformée de Fourier numpy
+ array_fft = numpy.fft.fft(array) #Calcul la transformée de Fourier du tableau de valeurs array
+ array_fft_centre = numpy.fft.fftshift(array_fft) #Centre la transformée de Fourier à 0
+ array_fft_abs = numpy.abs(array_fft_centre) # Ne considère que le module du nombre complexe de Fourier calculé avant
+\end{python}
+\setcounter{part}{-6}
+\part{Sources}
+
+\appendix
+
+\begin{description}
+\item[$\bullet$] http://www.dxpatrol.pt/images/Docs/DXpatrolSDRradioMKIII.pdf
+\item[$\bullet$] http://airspy.com/airspy-r2/
+\item[$\bullet$] https://en.wikipedia.org/wiki/NOAA-19
+\item[$\bullet$] https://en.wikipedia.org/wiki/Automatic\_picture\_transmission
+\item[$\bullet$] www.satsignal.eu
+\end{description} 
+
+
+\end{document}
