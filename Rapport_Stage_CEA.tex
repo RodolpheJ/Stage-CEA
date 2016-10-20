@@ -128,7 +128,7 @@ Le signal est capté par l'antenne puis passe au travers du filtre coupe bande. 
 ~\\\indent Le filtrage du signal radio se fait directement de manière analogique avant que celui-ci ne soit traité numériquement par le récepteur SDR et la carte Raspberry PI 3. Ceci permet d'éviter les pertes d'informations duent à un unique filtrage numérique et d'obtenir l'intégralité de la partie du signal centré autour de 137 MHz afin de faciliter la transformation du signal analogique en signal numérique par le récepteur SDR et de communiquer uniquement les données utiles du signal à la Raspberry PI.
 ~\\\\Le filtre passe-bande consiste en une succession d'un filtre passe-bas et d'un filtre passe-haut. Les filtres forment un filtre passe-bande laissant passser les fréquences de 132 MHz à 560 MHz.
 \section{Le LNA (\emph{Low Noise Amplifier})}
-~\\\indent Le LNA amplifie le gain du signal de 20 dB et peut traiter des signaux allant de quelques MHz à 2 GHz. Le LNA possède un traversé en Pi pour réduire les perturbations extérieures et une capacité de 1mF a été rajoutée afin d’améliorer le bruit.
+~\\\indent Le LNA amplifie le gain du signal de 20 dB et peut traiter des signaux allant de quelques MHz à 2 GHz. Le LNA possède un traversée en Pi pour réduire les perturbations extérieures et une capacité de 1mF a été rajoutée afin de diminuer le bruit.
 \section{L'alimentation par POE (\emph{Power Over Ethernet}) .}
 ~\\\indent L'alimentation par POE permet d'alimenter l'antenne par le biais du câble ethernet chargé de communiquer les données. Elle reçoit une tension de 48 Volts qu'elle transforme par la suit en 5 Volts pour alimenter l'antenne et la carte Raspberry PI 3.
 ~\\\\Ce procédé est innovant comparé à ce qui se fait habituellement en radio. Néanmoins, l'alimentation peut souvent être une source de bruit venant s'ajouter au signal receptionné par l'antenne. Habituellement, une alimentation simple, comme une pile, est utilisée en radio pour limiter ce bruit. Il s'agit donc de tester un nouveau procédé d'alimentation qui offre toutefois l'avantage de combiner l'accès internet avec celui de l'alimentation ce qui peut simplifier grandement l'installation  
@@ -184,7 +184,7 @@ La valeur du rapport signal sur bruit est donc plus basse que celle indiquée da
 Il est donc tout à fait envisageable de pouvoir l'intégrer sur l'un des prototypes d'antenne réceptrice des signaux VHF émis depuis un satellite.
 
 \chapter{Validation de la chaîne de réception radio}
-Afin de valider la chaîne de réception radio prototypée avec deux types d'antenne différents, un test de réception des données VHF du satellite météo NOAA-19 a été effectué. Ce satellite émet à la même fréquence que celle prévue par le satellite \emph{Svom}. Ce test a été validé avant mon arrivée dans l'entreprise.
+Afin de valider la chaîne de réception radio prototypée avec deux types d'antenne différents, un test de réception des données VHF du satellite météo NOAA-19 a été effectué. Ce satellite émet à la même fréquence que celle prévue par le satellite \emph{Svom} et utilise le même type de modulation de signal que le satellite \emph{Svom} prévoit d'utiliser pour transmettre ses signaux d'alertes à la Terre. Ce test a été validé avant mon arrivée dans l'entreprise.
 La chaîne de réception radio a donc pour objectif de réceptionner les images au format APT (\emph{Automatic Picture Transmission}) transmises par le satellite \emph{NOAA-19}.
 \section{Le satellite scientifique météo NOAA-19}
 ~\\\indent La trajectoire du satellite NOAA-19\footnote{Source depuis la page web \emph{https://en.wikipedia.org/wiki/NOAA-19}} suit une orbite polaire située à environ 850 km de la Terre et en fait le tour en 102 min. La durée de la visibilité d'un passage est d'approximativement 15 min pour une antenne réceptrice localisée dans l'enceinte du CEA.
@@ -314,20 +314,49 @@ Le type d'antenne utilisé joue également un rôle sur la valeur minumum de l'�
 
 \part{Automatisation de la chaîne de réception radio}
 Dans le but blalbla (à rédiger)
+\chapter{L'acquisition des données satellite NOAA-19}
+Dans le but d'acquérir les données d'images APTs du satellite \emph{NOAA-19}, un programme appelé \emph{Svom-fm} a été développé par mon responsable de stage Jean-Paul Lefèvre. Ce programme est prévu pour fonctionner avec un récepteur SDR \emph{DX-PATROL}. L'objectif de ce programme est d'acquérir les données transmises par le satellite \emph{NOAA-19} lors d'un passage et de les décoder jusqu'à l'obtention de l'image APT correspondante.
+\section{Le programme \emph{Svom-FM}}
+~\\\indent Le programme \emph{Svom-FM} est composé de plusieurs scripts remplissant chacun une fonction spécifique. Ce programme est basé sur l'utilisation de logiciels en open-source disponibles sous la distribuion \emph{Linux} que sont \emph{rtl\_fm}, \emph{rtl\_tcp}, \emph{Sox} et \emph{atpdec}.
+\subsection{Les programmes \emph{rtl\_fm} et \emph{rtl\_tcp}}
+\emph{rtl\_fm} est un démodulateur de signal radio pouvant gérer les signaux FM, AM et SSB et fait partie du projet \emph{rtl-sdr} (Software Defined Radio) sous \emph{Linux}\footnote{Voir partie \emph{Sources} http://kmkeen.com/rtl-demod-guide/}. Il est capable d'analyser plus de 100 fréquences à la seconde. Son utilisation se fait uniquement par lignes de commandes via un terminal ce qui s'avèrera très utile pour automatiser la chaîne de réception radio.
+Voici un exemple de son utilisation en ligne de commande pour recevoir la radio FM à la fréquence 89.1 MHz:
+$$ rtl\_fm -f 89.1M -M fm -s 170k -A fast -r 32k -l 0 -E deemp $$
+\begin{itemize}
+ \item[$\bullet$] \emph{-f} indique la fréquence de réception.
+ \item[$\bullet$] \emph{-M fm} signifie \emph{narrowband FM}.
+ \item[$\bullet$] \emph{-s} est le taux d'échantillonnage du signal radio en KHz par seconde.
+ \item[$\bullet$] \emph{-r} correspond au reéchantillonnage du signal en sortie du filtre numérique passe-bas afin de pouvoir l'écouter.
+ \item[$\bullet$] \emph{-E} applique des filtres supplémentaires pour traiter le signal reçu.
+\end{itemize}
+
+\subsection{Le programme \emph{atpdec}}
+\subsection{Le programme \emph{Sox}}
+
 \chapter{L'acquisition des caractéristiques des passages du satellite \emph{NOAA-19}}
 L'obtention des caractéristiques des passages du satellite \emph{NOAA-19} permettent essentiellement d'avoir accès aux horaires de chaque passage du satellite au dessus d'un point géographique donné ainsi qu'à l'élévation maximale du satellite lors du passage considéré.
 \section{Le logiciel \emph{Predict}}
 ~\\\indent Les caractéristiques des passages du satellite \emph{NOAA-19} peuvent être obtenues à l'aide du logiciel open-source \emph{PREDICT}. 
 ~\\\\\emph{PREDICT} est un logiciel open-source, multi-utilisateurs, de prédictions d'orbites satellites développé sous le système d'exploitation Linux par John A. Magliacane\footnote{Voir partie \emph{Sources} http://www.qsl.net/kd2bd/predict.html}.
 ~\\\\Afin de pouvoir prédire les caractéristiques des passages d'un satellite donné, l'utilisation du logiciel \emph{PREDICT} nécessite un fichier \emph{QTH} contenant la géolocalisation du lieu de référence à partir duquel effectuer les prédictions ainsi que d'un fichier \emph{TLE} contenant les données sur la trajectoire de l'orbite du satellite pour lequel on souhaite obtenir les predictions. Le fichier \emph{QTH} est à éditer par l'utilisateur tandis que le fichier \emph{TLE} est disponible en mettant à jour la base de donnée fournit par le logiciel \emph{PREDICT} à l'aide d'une simple ligne de commande exécutée via un terminal.
-\subsubsection{Prise en main du logiciel PREDICT et problèmes rencontrés lors de son installation et de son utilisation}
+\subsubsection{Prise en main du logiciel PREDICT}
 Le principal inconvénient du logiciel \emph{PREDICT} est qu'il ne peut retourner que les caractéristiques d'un passage satellite à la fois au dessus d'un point géographique donné.  
 ~\\De plus, le fichier \emph{makefile} d'installation du logiciel est totalement dépassé. Il a donc fallu dans un premier temps refaire entièrement le \emph{makefile} avant de pouvoir utiliser ce logiciel et donc se documenter sur la manière de créer un tel fichier. 
 ~\\Après l'installation de ce logiciel, il est apparu également que lorsque le chemin absolu de l'executable \emph{./Predict} dépasse la taille de 50 caractères, l'exécution du logiciel plante. Le seul moyen de corriger ce problème est de modifier et de recompiler le logiciel \emph{PREDICT}.
 ~\\Enfin, si l'heure fournie en argument de l'exécutable \emph{./Predict}, à partir de laquelle l'utilisateur souhaite obtenir des prédictions sur les passages d'un satellite, est trop proche d'un passage déjà effectué, le logiciel retournera les caractéristiques du passage passé et non celles du prochain passage à partir de l'heure indiquée.
 ~\\\\Cette prise en main du logiciel \emph{PREDICT} était nécessaire afin de pouvoir d'une part utiliser ce logiciel correctement et d'autre part de pouvoir inclure son utilisation dans le programme qui permettra l'automatisation de la chaîne de réception radio.
+\section{L'application\emph{spring-vhf-predict}}
+Dans le but d'automatiser le prototype de chaîne de réception radio recevant les données du satellite \emph{NOAA-19} dans un intervalle de temps donné, les caractéristiques de chaque passage du satellite doivent être acquises dans cet intervalle de temps et enregistrées dans une base de données afin de pouvoir les consulter à tout moment pour lancer l'acquisition de la chaîne et pour pouvoir obtenir des informations pouvant aider à identifier des problèmes lors de la réception d'un signal de mauvaise qualité.
+~\\\\Pour cela, une application appelée \emph{spring-vhf-predict} a été développée afin de satisfaire à ce besoin. L'image~\ref{archi_spring} ci-après illustre l'architecture de cette application.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=8cm,height=10cm]{visible.png}
+	\caption{\label{visible} \underline{Réception d'une image APT dans le visible avec le DX-PATROL}}
+\end{figure}
 \chapter{Utilisation du récepteur AIRSPY dans le processus d'automatisation de la chaîne}
 \chapter{La mise en commun des différents scripts pour l'automatisation de la chaîne}
+
 
 
 
@@ -378,6 +407,7 @@ La source de cette fiche technique est à l'adresse web \emph{http://airspy.com/
 \item[$\bullet$] https://en.wikipedia.org/wiki/Automatic\_picture\_transmission
 \item[$\bullet$] www.satsignal.eu
 \item[$\bullet$] http://www.qsl.net/kd2bd/predict.html
+\item[$\bullet$] http://kmkeen.com/rtl-demod-guide/
 \end{description} 
 
 
