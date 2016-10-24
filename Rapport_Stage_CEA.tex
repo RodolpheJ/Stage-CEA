@@ -14,6 +14,12 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
+~\\
+\begin{figure}
+ \centering
+	\itshape
+	\includegraphics[width=15cm,height=5cm]{logos.png}
+\end{figure}
 
 \begingroup
 \thispagestyle{empty}
@@ -43,10 +49,39 @@
 ~\vfill
 \thispagestyle{empty}
 
-\noindent \textsc{Rédigé par Rodolphe Jeunehomme }\\ % Publisher
+\noindent \textsc{Rédigé par Rodolphe Jeunehomme}\\ % Publisher
 \noindent \textsc{~\\Sous la direction de M. Jean-Paul Lefèvre et M. Bertrand Cordier}\\ % Publisher
+\noindent \textsc{Conseiller d'études - Mmme Charlotte Langlais}\\
 
-\noindent \textit{Télécom-Bretagne, Stage de fin d'étude 2016} % Printing/edition date
+\noindent \textit{Télécom-Bretagne, Stage de fin d'études Mai-Octobre 2016} % Printing/edition date
+
+
+
+
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\pagestyle{fancy} % Print headers again
+\setcounter{part}{-1}
+\part{Résumé - Executive summary}
+\subsubsection{Français}
+~\\\indent Ce rapport de stage a pour objectif de décrire mes travaux effectués durant la période de Mai à Octobre 2016 au sein du service Sédi (Service d'électronique des détecteurs et de l'informatique) du département de l'Irfu (Institut de recherche sur les lois fondamentales de l'univers) du CEA (Commissariat de l'énergie atomique et des énergies alternatives) de Saclay.
+~\\\\Une chaîne de réception radio basée sur une antenne quadrifilaire à hélices a été prototypée dans la période précédant mon stage sur le toît du bâtiment du service Sédi dans le cadre de la mission spatiale \emph{Svom} pour la réception des messages d'alertes émis par le satellite \emph{Svom} en bande VHF lors de la détection de sursauts gamma dans l'univers. 
+~\\\\Les objectifs principaux de ce stage sont les tests et l'optimisation de cette chaîne de réception radio. Les test ont été effectués à partir des données transmises par le satellite météo NOAA-19 qui émet à la même fréquence de 137 MHz que celle qu'utilisera le satellite Svom pour transmettre ses données vers la Terre.
+~\\\\Un deuxième prototype de chaîne de réception radio utilisant un autre type d'antenne, l'antenne Turnstile, a été installé à côté de la première antenne durant ce stage afin de comparer les performances des deux antennes. 
+~\\\\Un autre prototype de récepteur SDR (Software Defined Radio), le récepteur AIRSPY-R2, a également été inclu à la chaîne de réception radio afin de comparer les performances avec celui initialement installé sur la chaîne, le récepteur SDR DX-PATROL.
+~\\\\Un programme permettant d'analyser par transformées de Fourier les images APTs transmises par le satellite NOAA-19 a été développé afin de comparer statistiquement les performances des deux antennes.
+~\\\\Un programme d'automatisation de la chaîne de réception radio, utilisant l'architecture REST (server-client), a également été dévelopé et a représenté la plus grande partie de ce stage afin de constituer une base de données d'images APTs reçues par le satellite NOAA-19 et de pouvoir établir des statistiques sur la qualité des images reçues en fonction du type d'antenne ou du type de récepteur SDR utilisé. 
+~\\\\Une base de données a également été créée afin de sauvegarder les caractéristiques des passages du satellite NOAA-19 au moment de l'acquisition des données par le prototype de chaîne de réception radio. Cette base de données est relié à l'automatisation de la chaîne de réception radio en mémorisant les horaires des passages du satellite NOAA-19 et permettra à l'utilisateur de pouvoir établir plus facilement une corrélation entre la réception d'un signal de mauvaise qualité et les caractéristiques du passage du satellite NOAA-19 lors de la transmission d'un tel signal. 
+~\\\\\\
+\subsubsection{English}
+~\\\indent This internship report aims to describe my work done during the period from May to October 2016 within the service Sedi (Electronic detectors and Informatic Service) of the department of IRFU (Institute of research about fundamental laws of the universe) in the CEA (Research center about Atomic energy and alternative energies) in Saclay.
+~\\\\A radio receiver system based on the use of a quadrifilar helix antenna was prototyped in the period before the beginning of my internship and was installed on the roof of the building of the Sedi service for the space mission \emph{SVOM} in order to receive alert messages from the \emph{Svom} satellite in the frequency band VHF during the detection of gamma-ray bursts in the universe by scientific instruments embedded in the satellite.
+~\\\\The main objectives of this internship were testing and optimizing this radio receiver chain. Tests were performed using data provided by the NOAA-19 weather satellite that transmits on the same frequency of 137 MHz, the same frequency that will be used by SVOM to transmit its data to Earth.
+~\\\\A second prototype of radio receiver chain using another type of antenna, the Turnstile antenna, was installed next to the first antenna during this internship to compare the performance of the two antennas.
+~\\\\Another prototype receiver SDR (Software Defined Radio), the \emph{AIRSPY-R2} receptor, was also included in the radio receiver chain to compare the performance with the one originally installed on the channel, the receiver SDR DX -PATROL.
+~\\\\A program to analyze with Fourier transforms the APTs images from the NOAA-19 satellite was developed to statistically compare the performance of the two antennas in function of the caracteristics of the satellite NOAA-19 passes.
+~ \\\\An automation radio reception chain program, using the REST architecture (server-client), was also developped, to provide a database of APTs images received by the NOAA-19 satellite and to establish statistics on the quality of the images received by the two different type of antenna or by the two type of SDR receiver.
+~ \\\\A database has also been created to save passes features of the NOAA-19 satellite at the time of the acquisition of the data by the radio receiver chain prototype. This database is linked to the automation program of the radio reception chain by saving the next passes hours of the NOAA-19 satellite and will also allow the user to establish more easily a correlation between the reception of a poor signal quality and the characteristics of NOAA-19 satellite passes during the transmission of such a signal (elevation of the satellite, etc.).
+
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -58,16 +93,48 @@
 
 \tableofcontents % Print the table of contents itself
 
-
-
-%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
-\pagestyle{fancy} % Print headers again
-\setcounter{part}{-1}
 \part{Introduction}
-\setcounter{chapter}{0}
-~\\\\
+\setcounter{chapter}{1}
+\section{Le Commissariat à l'énergie atomique et aux énergies alternatives de Saclay}
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=10cm,height=3cm]{cea-centre.jpg}
+\end{figure}
+\indent Le CEA est un acteur majeur de la recherche, du développement et de l'innovation en France et dans le monde\footnote{Voir partie \emph{Sources} http://www.cea.fr/}. Il intervient essentiellement dans le cadre de 4 missions: la défense et la sécurité, l'énergie nucléaire, la recherche technologique pour l'industrie et la recherche fondamentale.
+~\\\\Le site du CEA de Saclay est l'un des 10 centres de recherche du CEA. Il comprend plus de 5000 salariés ainsi qu'un grand nombre de laboratoires et de services scientifiques dans tous les domaines pour effectuer ses recherches. 
+\subsection{Le service SAP (Service d'Astrophysique)}
+~\\\indent Le service pour lequel j'ai travaillé durant ma période de stage est le Service d'Astrophysique (SAP) et le laboratoire auquel j'ai été rattaché est le \emph{Laboratoire Interface Science et Instruments Spatiaux} (LISIS) au sein du département de l'Irfu (Institut de Recherche sur les lois Fondamentales de l'Univers) du CEA de Saclay. Ce service est en collaboration direct avec le CNES (Centre National d'Etudes Spatiales). Il est fortement impliqué dans les missions spatiales du programme scientifique Cosmic Vision de l’ESA, ainsi que sur d'autres missions majeures telle que la mission \emph{Svom}. 
+\subsection{Le service Sédi (Service d'électronique des détecteurs et de l'informatique)}
+~\\\indent Le service Sédi est l'un des 3 services techniques du département de l'Irfu avec le service SAP\footnote{Voir partie \emph{Sources} http://irfu.cea.fr/Phocea/Vie\_des\_labos/Ast/ast\_service.php?id\_unit=5}. C'est au sein de ce service que j'ai travaillé pendant toute la durée de mon stage tout en étant rattaché au service SAP. Ce stage était donc l'objet d'une collaboration entre le service SAP et le service Sédi pour la mission \emph{Svom}. J'y ai travaillé sous la directive de M. Jean-Paul Lefèvre et en collaboration avec l'équipe informatique de ce service.
+
+~\\\\Tous les services au sein du CEA de Saclay dépendent les uns des autres. Cet aspect m'a permis de pouvoir effectuer des visites dans les laboratoires des autres services durant mon stage et de pouvoir assister à des présentations de projets rattachés à d'autres services que celui du service SAP. Ce type d'organisation offre donc la possibilité d'être à jour sur les nouvelles découvertes et projets scientifiques effectués au sein du CEA de Saclay.
+
+\section{La mission spatiale \emph{Svom}}
+~\\\indent\emph{Svom} signifie \emph{Space-based multiband astronomical Variable Objects Monitor}. Cette mission spatiale est en collaboration avec le CNES (Toulouse, France) et la Chine. Cette mission a pour but l'étude des sursauts gamma dans l'univers\footnote{Voir partie \emph{Sources} https://svom.cnes.fr/}. L'étude de ce type de rayonnement permettra de pouvoir observer l'univers dans le spectre d'émission des rayonnements gamma afin de pouvoir établir des nouveaux modèles de compréhension sur la fusion des étoiles ou la formation des trous noirs.
+~\\\\Afin d'étudier ces sursauts gamma, un satellite va être lancé depuis la Chine en 2021 avec embarqués à son bord plusieurs instruments spatiaux permettant de détecter ce type de sursauts. Le télescope \emph{Eclair} du département de l'Irfu fait parti des instruments embarqués et a pour mission de détecter grossièrement la localisation spatiale des points d'émission des sursauts gamma. Lors de la detection d'un sursaut par le telescope \emph{Eclair} un message d'alerte va être émis par le satellite afin que des telescopes plus précis situés sur Terre pointent vers la direction indiqué par \emph{Eclair} et puissent étudier plus fininement la cause de l'émission de ces sursauts gamma.
+~\\
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=8cm,height=6cm]{svom.jpg}
+	\caption{\label{svom} \underline{Illustration de la mission spatiale Svom}}
+\end{figure}
+\section{Présentation du contexte de la mission effectuée pendant ce stage}
+~\\\\Un réseau d'antennes sera déployé tout autour du monde le long de l'équateur et chargé de détecter les messages d'alertes du satellite \emph{Svom}.
+~\\\\L'image~\underline{\color{blue}\ref{reseau-antennes}} suivante illustre le principe de fonctionnement de ce réseau d'antennes.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=7cm]{reseau-antennes.png}
+	\caption{\label{reseau-antennes} \underline{Le réseau d'antennes pour la mission spatiale Svom}}
+\end{figure}
+\noindent Les antennes seront installées le long de l'équateur et recevront les messages d'alertes du satellite \emph{Svom}. Ces messages seront ensuite stockés dans un \emph{Cloud}. Ce \emph{Cloud} sera mis à disposition des centres de recherches et des universités dans le monde afin que tout le monde puisse avoir la possibilité d'observer les émissions de sursauts gamma.
+~\\\\C'est au sein du service Sédi qu'ont été développés les premiers prototypes de chaîne de réception radio destinés à recevoir les messages d'alertes du satellite \emph{Svom}.
+~\\\\L'objectif de mon stage était de tester et d'optimiser le prototype de chaîne de réception radio créé par le service Sédi du CEA de Saclay pour la mission spatiale \emph{Svom}. La partie analogique de la chaîne ayant déjà été étudiée avant le début de mon stage, l'optimisation de la chaîne de réception radio a consisté essentiellement à tester la réception du signal émis par le satellite météo \emph{NOAA-19} et à développer un programme permettant l'automatisation de l'acquisition des données émis en bande VHF (bande qui sera utilisé par le satellite \emph{Svom}) par la chaîne de réception radio. 
+\section{L'environnement de travail durant le stage}
+~\\\indent Un bureau et un poste de travail avec une distribution Windows préinstallée et une connection internet m'ont été attribués pour toute la durée de mon stage. Le système d'exploitation \emph{Ubuntu} de la distribution Linux a par la suite été installé afin de travailler sur le même environnement numérique que celui qui sera embarqué sur chaque antenne. Pour le développement des différents programmes informatiques de la chaîne de réception radio, le gestionnaire de versions git \emph{Gitlab} interne au CEA de Saclay a été très utile afin de conserver une copie et un suivi de son travail.
 \part{La chaîne de réception radio}
-\setcounter{chapter}{0}
 La chaîne de réception radio sera utilisée pour la réception des messages d'alertes émis par le satellite \emph{Svom} via un canal à VHF 137MHz. Ce récepteur sera installé autour du monde le long de l'équateur afin que le satellite soit à une élévation suffisante par rapport à l'antenne réceptrice lors de l'acquisition des données radios.
 ~\\\\La figure~\underline{\color{blue}\ref{schema_chaine}} ci-dessous illustre les différents composants de la chaîne de réception radio.
 \begin{figure}[H]
@@ -76,7 +143,7 @@ La chaîne de réception radio sera utilisée pour la réception des messages d'
 	\includegraphics[width=12cm,height=10cm]{schema_chaine.png}
 	\caption{\label{schema_chaine} \underline{La chaîne de réception radio VHF}}
 \end{figure}
-Ce chapitre est consacré à la description et l'étude de la chaîne de réception radio du signal qui sera émis par le satellite \emph{Svom}.
+\noindent Ce chapitre est consacré à la description et l'étude de la chaîne de réception radio du signal qui sera émis par le satellite \emph{Svom}.
 
 \chapter{Les antennes testées pour la chaîne de réception radio} 
 ~\\\\Deux prototypes d'antenne ont été installés sur le toît du batiment du service Sédi du CEA de Saclay afin de comparer leur performance par rapport à la chaîne de réception radio à mettre en place.
@@ -133,8 +200,10 @@ Le signal est capté par l'antenne puis passe au travers du filtre coupe bande. 
 ~\\\\Ce procédé est innovant comparé à ce qui se fait habituellement en radio. Néanmoins, l'alimentation peut souvent être une source de bruit venant s'ajouter au signal receptionné par l'antenne. Habituellement, une alimentation simple, comme une pile, est utilisée en radio pour limiter ce bruit. Il s'agit donc de tester un nouveau procédé d'alimentation qui offre toutefois l'avantage de combiner l'accès internet avec celui de l'alimentation ce qui peut simplifier grandement l'installation  
 de l'antenne dans des zones difficiles d'accès (comme par exemple dans certaines zones le long de l'équateur où les antennes seront installées).
 ~\\\\L’alimentation de l’antenne et de son électronique nécessite une tension de 5 V. Le Raspberry nécessite 5 W et le LNA 250 mW. La POE alimente directement la Raspberry pi. Dans la Raspberry Pi, l’alimentation est filtrée puis envoyée au processeur ainsi que sur les connecteurs USB. Le récepteur SDR et le LNA sont alimentés par l’USB.
+\section{La carte Raspberry PI}
+~\\\indent Le modèle de carte utilisé pour recevoir les données logiques du récepteur SDR est la \emph{Raspberry PI 3}. Elle possède un processeur 64 bits \emph{quad-core} ARMv8 (CPU) et 1 GB de mémoire vive. Elle est équipée de 4 ports USB, d'un port ethernet ainsi que d'un port HDMI\footnote{Voir la partie \emph{Sources} https://www.raspberrypi.org/products/raspberry-pi-3-model-b/}. Elle est compatible avec la technologie \emph{ssh} permettant de la contrôler à distance via un autre poste de travail. Son prix varie autour de 50 euros.
 \section{Le récepteur SDR (\emph{Software Defined Radio})}
-~\\\indent Dans la chaîne de réception radio, le récepteur SDR a pour rôle d'abaisser la fréquence du signal reçu par l'antenne et de numériser le signal. Le signal arrive par voie analogique dans le récepteur SDR qui va ensuite échantillonner les données en \emph{Mega Sample Per Seconds} (MSPS) et les transmettre via un port USB à la Raspberry PI 3.
+~\\\indent Dans la chaîne de réception radio, le récepteur SDR a pour rôle d'abaisser la fréquence du signal reçu par l'antenne et de numériser le signal. Le signal arrive par voie analogique dans le récepteur SDR qui va ensuite échantillonner les données en \emph{Mega Samples Per Second} (MSPS) et les transmettre via un port USB à la Raspberry PI 3.
 \subsection{Le récepteur SDR \emph{DX-PATROL}}
 ~\\Le récepteur SDR \emph{DX-PATROL}\footnote{Voir la partie \emph{Annexes} section \emph{Les récepteurs SDR}.} est le récepteur initialement installé sur les deux premiers prototypes d'antenne pour tester la réception d'un signal satellite. 
 ~\\\\Il peut recevoir des signaux compris dans la bande 100kHz-2GHz. La réception du signal à 137.1MHz du satellite météo \emph{NOAA-19} est donc possible avec ce récepteur. 
@@ -150,23 +219,23 @@ de l'antenne dans des zones difficiles d'accès (comme par exemple dans certaine
 	\includegraphics[width=7cm,height=4cm]{airspy_pic.png}
 	\caption{\label{airspy_pic} \underline{Récepteur SDR AIRSPY-R2}}
 \end{figure}
-~\\Le récepteur \emph{AIRSPY}\footnote{Voir la partie \emph{Annexes} section \emph{Les récepteurs SDR}.} fonctionne dans la même bande de fréquences que le \emph{DX-PATROL}. Sur la fiche technique on peut voir que le gain moyen ajouté à un signal RF est d'environ 35 dBm. Tandis que sur la fiche technique du \emph{DX-PATROL} le gain maximal pouvant être ajouté à un signal RF est de 45 dBm.
+~\\\noindent Le récepteur \emph{AIRSPY}\footnote{Voir la partie \emph{Annexes} section \emph{Les récepteurs SDR}.} fonctionne dans la même bande de fréquences que le \emph{DX-PATROL}. Sur la fiche technique on peut voir que le gain moyen ajouté à un signal RF est d'environ 35 dBm. Tandis que sur la fiche technique du \emph{DX-PATROL} le gain maximal pouvant être ajouté à un signal RF est de 45 dBm.
 En terme de performance sur le gain ajouté au signal lors de sa conversion anologique-numérique, le récepteur SDR \emph{AIRSPY} semble similaire au \emph{DX-PATROL}.
 ~\\\\Sa faculté d'échantillonnage en revanche dépasse largement celle du \emph{DX-PATROL} puisqu'elle s'étend de 2.5 MSPS jusqu'à 10 MSPS. Mais cette caractéristique dépend énormément des capacités de traitement de données de la Raspberry PI, données envoyées via USB par le \emph{AIRSPY}. De plus, dépassé un certain seuil, la distinction entre un signal échantillonné à ce seuil et un signal échantillonné à un nombre de MSPS trop élevé ne change rien à la qualité des données reçues.
 Le taux d'échantillonnage a donc été fixé à son minimum de 2.5 MSPS afin de se rapprocher le plus de celui utilisé par le \emph{DX-PATROL} et donc de pouvoir, à terme, comparer plus pertinemment les deux modèles de récepteur SDR et de ne pas faire surchauffer la Raspberry PI.
 \subsection{Test des performances du récepteur SDR \emph{AIRSPY-R2}}
-Afin d'évaluer pertinemment les performances du récepteur SDR \emph{AIRSPY} (sans se baser uniquement sur la documentation), une première chaîne de réception radio a été mise en place à partir d'une simple antenne radio FM de bureau sur le poste de travail m'ayant été assigné pour la durée du stage.
-~\\\\Normalement, le récepteur SDR \emph{AIRSPY} n'a pas besoin de drivers pour fonctionner car il est prévu pour fonctionner à partir d'un système d'exploitation Windows. En effet, les concepteurs du logiciel Windows \emph{SDR\#} sont les mêmes que les concepteurs du récepteur \emph{AIRSPY}. Hors, le système sur lequel le récepteur est prévu de fonctionner est une Raspberry PI fonctionnant sous le système d'exploitation Linux (moins encombrant et gourmand en processus que Windows pour un système embarqué). Heureusement, une bibiliothèque de drivers Linux est téléchargeable en open-source via le site internet d'\emph{Airspy}\footnote{Voir la partie \emph{Sources}\ref{Sources} www.airspy.com}. L'installation des drivers \emph{AIRSPY} pour une distribution Linux sera abordée plus en détails dans la partie XXXXXX.
+~\\\indent Afin d'évaluer pertinemment les performances du récepteur SDR \emph{AIRSPY} (sans se baser uniquement sur la documentation), une première chaîne de réception radio a été mise en place à partir d'une simple antenne radio FM de bureau sur le poste de travail m'ayant été assigné pour la durée du stage.
+~\\\\Normalement, le récepteur SDR \emph{AIRSPY} n'a pas besoin de drivers pour fonctionner car il est prévu pour fonctionner à partir d'un système d'exploitation Windows. En effet, les concepteurs du logiciel Windows \emph{SDR\#} sont les mêmes que les concepteurs du récepteur \emph{AIRSPY}. Hors, le système sur lequel le récepteur est prévu de fonctionner est une Raspberry PI fonctionnant sous le système d'exploitation Linux (moins encombrant et gourmand en processus que Windows pour un système embarqué). Heureusement, une bibiliothèque de drivers Linux est téléchargeable en open-source via le site internet d'\emph{Airspy}\footnote{Voir la partie \emph{Sources}\ref{Sources} www.airspy.com}. L'installation des drivers \emph{AIRSPY} pour une distribution Linux sera abordée plus en détails dans la partie 5.2.1.
 ~\\\\Pour le test, le système d'exploitation Linux a donc été installé sur le poste de travail afin de reproduire au mieux l'environnement numérique embarqué sur chaque antenne.
 ~\\\\Le logiciel \emph{Gnuradio-Companion} (disponible dans les packages de la base apt d'Ubuntu) associé à la librairie \emph{rtl-sdr} permet l'utilisation du récepteur \emph{AIRSPY} sur un système Linux. 
 ~\\\\L'image~\underline{\color{blue}\ref{gnu_airspy}} ci-après illustre la chaîne de réception radio FM utilisée pour le test.
 \begin{figure}[H]
 	\centering
 	\itshape
-	\includegraphics[width=12cm,height=8cm]{Gnuradio_rtl_sdr.png}
+	\includegraphics[width=15cm,height=8cm]{Gnuradio_rtl_sdr.png}
 	\caption{\label{gnu_airspy} \underline{Chaîne de réception radio FM sous Gnuradio}}
 \end{figure}
-L'objectif de ce \emph{flow-graph} Gnuradio est de pouvoir écouter la radio FM à la fréquence 105.1 MHz. Le fonctionnement des différents blocs composant cette chaîne de réception radio sera expliqué en détails dans la partie XXXXX. Les blocs \emph{WX GUI FFT Sink} permettent de tracer le gain du signal en sortie de chaque bloc en fonction de la fréquence.
+L'objectif de ce \emph{flow-graph} Gnuradio est de pouvoir écouter la radio FM à la fréquence 105.1 MHz. Le fonctionnement des différents blocs composant cette chaîne de réception radio sera expliqué en détails dans la section 5.2. Les blocs \emph{WX GUI FFT Sink} permettent de tracer le gain du signal en sortie de chaque bloc en fonction de la fréquence.
 ~\\\\La figure~\underline{\color{blue}\ref{airspy_fft}} ci-dessous illustre le gain du signal réceptionné par l'antenne et traité par le récepteur SDR avant et après le filtre passe bas numérique permettant d'isoler la fréquence de la station FM désirée.
 \begin{figure}[H]
 	\centering
@@ -198,7 +267,7 @@ La chaîne de réception radio a donc pour objectif de réceptionner les images 
 	\includegraphics[width=12cm,height=12cm]{apt.png}
 	\caption{\label{apt} \underline{Le format d'image Automatic Picture Transmission}}
 \end{figure}
-Le satellite NOAA-19 transmet des lignes de 2048 pixels à un rythme de 2 lignes par seconde.
+\noindent Le satellite NOAA-19 transmet des lignes de 2048 pixels à un rythme de 2 lignes par seconde.
 \section{La réception du signal émis par le satellite NOAA-19}
 \subsection{Avec le récepteur SDR \emph{DX-PATROL}}
 Le signal est reçu par l'antenne \emph{QHA} puis filtré et amplifié par la partie analogique de la chaîne de réception radio pour être ensuite échantillonné par le récepteur SDR (le récepteur utilisé en premier lieu était le \emph{DX-PATROL}) et envoyé sous formes de données logiques à la Raspberry PI. Les données reçues par la Raspberry PI prennent la forme d'un fichier \emph{.raw} reconverti ensuite en fichier \emph{.wav} et rééchantillonné soit à la fréquence de 48 Khz, si l'on souhaite écouter le bip caractéristique du signal satellite sur une sortie audio, soit à la fréquence de 11025 Hz si l'on souhaite pouvoir décoder l'image APT.
@@ -224,7 +293,7 @@ Le signal est reçu par l'antenne \emph{QHA} puis filtré et amplifié par la pa
 	\includegraphics[width=15cm,height=10cm]{airspy_test.jpg}
 	\caption{\label{airspy_test} \underline{Réception d'une image APT avec l'AIRSPY}}
 \end{figure}
-Le réglage du récepteur \emph{AIRSPY} a été validé étant donné qu'il permet une bonne conversion en donnés binaires du signal reçu par l'antenne. En effet, ces images montrent que le décodage en image APT est possible et de plutôt bonne qualité.
+\noindent Le réglage du récepteur \emph{AIRSPY} a été validé étant donné qu'il permet une bonne conversion en donnés binaires du signal reçu par l'antenne. En effet, ces images montrent que le décodage en image APT est possible et de plutôt bonne qualité.
 ~\\\\Néanmoins des lignes d'interférences sont présentes sur l'image. La présence de ces lignes bruitées sur les images décodées à partir des deux types de récepteur SDR ont permis d'exclure l'hypothèse d'un mauvais fonctionnement du récepteur SDR utilisé (sans exclure le manque de fiabilité du \emph{DX-PATROL} comparé au \emph{AIRSPY}). 
 \chapter{Etudes et solutions d'amélioration de la qualité du signal réceptionné par l'antenne}
 \section{Identification des problèmes de réception potentiels dans la chaîne de réception radio}
@@ -258,7 +327,7 @@ Afin de s'assurer du bon fonctionnement de cette librairie, il convient de teste
 	\includegraphics[width=15cm,height=8cm]{fft_test.png}
 	\caption{\label{fft_test} \underline{Test de la librairie python numpy}}
 \end{figure}
-La transformée de Fourier d'une fonction porte étant un sinus cardinal on retrouve bien le résultat attendu après l'exécution du script python basé sur la librairie Numpy.
+\noindent La transformée de Fourier d'une fonction porte étant un sinus cardinal on retrouve bien le résultat attendu après l'exécution du script python basé sur la librairie Numpy.
 ~\\Le test a également été effectué pour une fonction sinus afin de s'assurer que même en complexifiant la fonction de départ, le script effectue correctement les calculs de transformées de Fourier. L'utilisation de cette librairie est donc validée.
 \subsection{Le script python \emph{apt\_fft.py}}
 Le script python \emph{apt\_fft.py} accepte les options illustrées dans la figure~\underline{\color{blue}\ref{usage_apt}} ci-après :
@@ -268,7 +337,7 @@ Le script python \emph{apt\_fft.py} accepte les options illustrées dans la figu
 	\includegraphics[width=15cm,height=5cm]{usage_apt.png}
 	\caption{\label{usage_apt} \underline{Helper script apt\_fft.py}}
 \end{figure}
-Ce script a pour objectif d'identifier les lignes bruitées sur une image APT. Il calcul tout d'abord la transformée de Fourier de chaque ligne de l'image pour ensuite calculer l'intégrale de la transformée de Fourier dans la bande de fréquence passée en option du script avec les options \emph{-s} et \emph{-e}.
+\noindent Ce script a pour objectif d'identifier les lignes bruitées sur une image APT. Il calcul tout d'abord la transformée de Fourier de chaque ligne de l'image pour ensuite calculer l'intégrale de la transformée de Fourier dans la bande de fréquence passée en option du script avec les options \emph{-s} et \emph{-e}.
 Etant donné que le bruit affecte principalement les hautes fréquences, le calcul de l'intégrale de la transformée de Fourier dans les hautes fréquences est suffisant pour identifier le bruit sur une ligne de l'image. Plus la valeur de l'intégrale sera grande et plus la ligne de l'image correspondante est bruitée.
 L'image~\underline{\color{blue}\ref{script_apt}} ci-après illustre le standard output de l'exécution du script \emph{apt\_fft.py}:
 \begin{figure}[H]
@@ -277,7 +346,7 @@ L'image~\underline{\color{blue}\ref{script_apt}} ci-après illustre le standard 
 	\includegraphics[width=15cm,height=10cm]{script_apt.png}
 	\caption{\label{script_apt} \underline{Le script apt\_fft.py}}
 \end{figure}
-Sur la figure de droite, les piques de valeurs de l'intégrale sont associés au lignes bruitées pointées en rouge sur l'image APT. Les trames de synchronisation (situées à droite dans l'image APT) permettent d'obtenir une estimation de la position du satellite au moment de la réception de la ligne bruitée.
+\noindent Sur la figure de droite, les piques de valeurs de l'intégrale sont associés au lignes bruitées pointées en rouge sur l'image APT. Les trames de synchronisation (situées à droite dans l'image APT) permettent d'obtenir une estimation de la position du satellite au moment de la réception de la ligne bruitée.
 En effet, chaque trait blanc de la trame de synchronisation indique qu'il s'est écoulé 1 min entre chaque trait. Associé aux caractéristiques du passage satellite N0AA-19 correspondant à la réception de l'image APT étudiée, ceci permet de pouvoir en déduire des informations sur l'origine du bruit identifié sur l'image APT à l'aide du script. 
 \subsection{Corrélation entre les résultats du script \emph{apt\_fft.py} et les caractéristiques des passages du satellite NOAA-19}
 ~\\Les caractéristiques des passages du satellite NOAA-19 on été acquises à l'aide de l'interface graphique \emph{Gpredict} du logiciel open-source \emph{Predict} pour Linux.
@@ -293,8 +362,8 @@ Les résultats du script sont ensuite mis en corrélation avec l'élévation max
 ~\\\\Les graphes Excel~\underline{\color{blue}\ref{IR_stat}} et~\underline{\color{blue}\ref{VIS_stat}} ci-après illustrent l'influence de l'élévation du satellite sur l'indicateur de bruit défini précédemment ainsi que sur le nombre de pixels reçus par image pour les domaines du visible et de l'infrarouge pour l'antenne \emph{Quadrifilar Helix Antenna}.
 \subsubsection{Observations}
 \noindent Ces graphes ont permis d'établir des seuils d'élévation maximale du satellite à partir desquels l'image reçue sera ou non de mauvaise qualité. 
-~\\\\L'indicateur de bruit par pixel diminue avec l'augmentation de l'élévation maximale d'un passage du satellite.
-~\\\\En comparant visuellement la qualité des images avec l'indicateur de bruit par pixel précédemment défini et le nombre de pixels reçus, il apparaît qu'au dessous de 50000 d'indicateur de bruit c'est à dire pour une élévation maximale en dessous de 25° et au dessus de 80°, l'image reçue comportera trop peu de pixels et sera donc de mauvaise qualité. Pareillement, le nombre de pixels reçus devient suffisant pour obtenir une image interprétable à partir de 40000 pixels reçus correspondant à une élévation maximale comprise entre 25° et 90° avec un maximum de pixels reçus aux alentours de 45° d'élévation maximale du satellite.  
+~\\L'indicateur de bruit par pixel diminue avec l'augmentation de l'élévation maximale d'un passage du satellite.
+~\\En comparant visuellement la qualité des images avec l'indicateur de bruit par pixel précédemment défini et le nombre de pixels reçus, il apparaît qu'au dessous de 50000 d'indicateur de bruit c'est à dire pour une élévation maximale en dessous de 25° et au dessus de 80°, l'image reçue comportera trop peu de pixels et sera donc de mauvaise qualité. Pareillement, le nombre de pixels reçus devient suffisant pour obtenir une image interprétable à partir de 40000 pixels reçus correspondant à une élévation maximale comprise entre 25° et 90° avec un maximum de pixels reçus aux alentours de 45° d'élévation maximale du satellite.  
 \begin{figure}[H]
 	\centering
 	\itshape
@@ -309,10 +378,12 @@ Les résultats du script sont ensuite mis en corrélation avec l'élévation max
 \end{figure}
 \subsubsection{Conclusion de l'analyse statistique}
 \noindent L'acquisition des données du satellite \emph{NOAA-19} par l'antenne ne sera donc pertinente que pour une élévation maximale du satellite lors de son passage au dessus de 25°. Cette caractéristique servira par la suite à automatiser la chaîne de réception radio uniquement lorsque l'élévation maximale du satellite dépassera cette valeur seuil.
-Le type d'antenne utilisé joue également un rôle sur la valeur minimum de l'élévation maximale du satellite pour une bonne réception des images APTs. En effet le diagramme de rayonnement de l'antenne \emph{QHA} est plus performant lorsque le satellite est situé le plus à l'horizon qu'avec l'antenne \emph{Turnstile}.
+Le type d'antenne utilisé joue également un rôle sur la valeur minimum de l'élévation maximale du satellite pour une bonne réception des images APTs. En effet le diagramme de rayonnement de l'antenne \emph{QHA} est plus performant lorsque le satellite est situé le plus à l'horizon qu'avec l'antenne \emph{Turnstile}. Afin de vérifier cette dernière hypothèse, le même travail d'analyse statistique devra être effectué pour l'antenne \emph{Turnstile}.
 
 \part{Automatisation de la chaîne de réception radio}
-Dans le but blalbla (à rédiger)
+Afin de récupérer le maximum d'images APTs du satellite \emph{NOAA-19} dans le but d'optimiser la chaîne de réception radio, un programme d'automatisation de l'acquisition des données satellites par la chaîne a été développé durant mon stage. Ce programme est appliqué à la réception des images APTs du satellite \emph{NOAA-19}. Une base de données permettant l'enregistrement des caractéristiques de chaque passage du satellite a également été créée.
+~\\\\Ce chapitre abordera tout d'abord l'acquisition des données par la chaîne de réception radio. Puis l'application \emph{spring-vhf-predict} permettant d'obtenir les caractéristiques des passages du satellite \emph{NOAA-19} sera présentée. 
+~\\\\Ces différents programmes permettront, une fois réunis, l'automatisation de la chaîne de réception radio.  
 \chapter{L'acquisition des données par la chaîne de réception radio}
 Dans le but d'acquérir les données du satellite \emph{Svom} lors de l'un de ses passages à portée de la chaîne de réception radio, un programme appelé \emph{Svom-fm} a été développé par mon responsable de stage Jean-Paul Lefèvre. Ce programme est prévu pour fonctionner avec un récepteur SDR \emph{DX-PATROL} et testé avec la réception des données du satellite \emph{NOAA-19}. L'objectif de ce programme est alors d'acquérir les données transmises par le satellite \emph{NOAA-19} lors de l'un de ses passages et de les décoder jusqu'à l'obtention des données transmises par ce dernier.
 \section{Le programme \emph{Svom-FM}}
@@ -320,7 +391,8 @@ Dans le but d'acquérir les données du satellite \emph{Svom} lors de l'un de se
 \subsection{Les programmes \emph{rtl\_fm} et \emph{rtl\_tcp}}
 ~\\\indent \emph{rtl\_fm} est un démodulateur de signal radio pouvant gérer les signaux FM, AM et SSB et fait partie du projet \emph{rtl-sdr} (Software Defined Radio) sous \emph{Linux}\footnote{Voir partie \emph{Sources} http://kmkeen.com/rtl-demod-guide/}. Il est capable d'analyser plus de 100 fréquences à la seconde. Son utilisation se fait uniquement par lignes de commandes via un terminal ce qui s'avèrera très utile pour automatiser la chaîne de réception radio.
 Voici un exemple de son utilisation en ligne de commande pour recevoir la radio FM à la fréquence 89.1 MHz:
-$$ rtl\_fm\ -f\ 89.1M\ -M\ fm\ -s\ 170k\ -A\ fast\ -r\ 32k\ -l\ 0\ -E\ deemp $$
+~\\$$ rtl\_fm\ -f\ 89.1M\ -M\ fm\ -s\ 170k\ -A\ fast\ -r\ 32k\ -l\ 0\ -E\ deemp $$
+~\\
 \begin{itemize}
  \item[$\bullet$] \emph{-f} indique la fréquence de réception.
  \item[$\bullet$] \emph{-M fm} signifie \emph{narrowband FM}.
@@ -358,8 +430,51 @@ $$ sox\ -r\ 48k\ -b\ 16\ -e\ s\ -t\ raw\ noaa-19.raw\ -r\ 11025\ -c\ 1\ noaa-19.
 	\includegraphics[width=15cm,height=10cm]{svom_fm.png}
 	\caption{\label{svom_fm} \underline{Architecture du programme Svom-FM}}
 \end{figure}
-L'utilisateur entre en lignes de commandes via un terminal l'appel au programme \emph{Svom-FM} avec les mêmes options que celles prises par les programmes \emph{rtl\_fm} et \emph{rtl\_tcp}. L'acquisition des données par \emph{rtl\_fm} génère un fichier audio \emph{.wav} échantillonné à la fréquence de 48 KHz, correspondant à la fréquence à laquelle la majorité des cartes sons des ordinateurs fonctionnent, afin de pouvoir écouter le signal. Ceci permet de pouvoir détecter d'éventuelles interférences et de pouvoir plus facilement en déterminer la cause. Par exemple, les prototypes d'antenne situés sur le toît du batiment du service \emph{Sédi} du CEA de Saclay captent parfois en même temps que le signal du satellite \emph{NOAA-19} un signal provenant de la sécurité du site du CEA. Ceci peut générer des interférences visibles sur les images APTs une fois décodées.
+\noindent L'utilisateur entre en lignes de commandes via un terminal l'appel au programme \emph{Svom-FM} avec les mêmes options que celles prises par les programmes \emph{rtl\_fm} et \emph{rtl\_tcp}. L'acquisition des données par \emph{rtl\_fm} génère un fichier audio \emph{.wav} échantillonné à la fréquence de 48 KHz, correspondant à la fréquence à laquelle la majorité des cartes sons des ordinateurs fonctionnent, afin de pouvoir écouter le signal. Ceci permet de pouvoir détecter d'éventuelles interférences et de pouvoir plus facilement en déterminer la cause. Par exemple, les prototypes d'antenne situés sur le toît du batiment du service \emph{Sédi} du CEA de Saclay captent parfois en même temps que le signal du satellite \emph{NOAA-19} un signal provenant de la sécurité du site du CEA. Ceci peut générer des interférences visibles sur les images APTs une fois décodées.
 Le fichier audio est ensuite rééchantillonné à l'aide du programme \emph{Sox} à la fréquence de 11025 Hz afin de pouvoir être décodé en image APT par le programme \emph{atpdec}. Les images APTs sont ensuite télétransmises sur un site internet.
+\section{La modification du programme \emph{Svom-FM} pour fonctionner avec le récepteur SDR \emph{AIRSPY-R2}     \color{white}. .}
+~\\\indent Au cours de ce stage, le récepteur \emph{AIRSPY-R2} a été installé sur la chaîne de réception radio qui utilise l'antenne \emph{Turnstile}. Les programmes \emph{rtl\_fm} et \emph{rtl\_tcp} ne fonctionnent pas avec ce type de récepteur SDR. Il a donc fallu développer un autre script pour remplacer le script shell faisant appel à \emph{rtl\_fm} et \emph{rtl\_tcp}.
+Ce script a été réalisé à l'aide du logiciel \emph{Gnuradio-Companion} et de la bibliothèque \emph{rtl-sdr} d'Osmocom\footnote{Voir partie \emph{Sources} http://sdr.osmocom.org/trac/wiki/rtl-sdr}. 
+\subsection{L'installation des drivers \emph{AIRSPY} pour la distribution Linux   \color{white}. .}
+~\\\indent Le récepteur SDR \emph{AIRSPY-R2} est prévu pour fonctionner initialement sous la distribution Windows avec le logiciel \emph{SDR\#}. Des drivers sont disponibles pour la distribution Linux sur le site \emph{www.airspy.com}. 
+~\\Un fichier \emph{README.md} a été inclu au repertoire \emph{git} contenant le script python de la chaîne de réception radio numérique afin d'expliquer la démarche d'installation des drivers \emph{Airspy}.
+\subsection{Le flow-graph de réception Gnuradio-Companion}
+~\\\indent Gnuradio-Companion est un logiciel \emph{open-source} qui utilise un système de blocs pour créer sa propre chaîne de réception radio appelée \emph{flow-graph}. Chaque bloc est codé en C++. Un script python peut être généré à partir du \emph{flow-graph} précédemment créé. Ce script est modifiable selon les besoins de l'utilisateur.
+~\\Le bon fonctionnement de Gnuradio-Companion pour réceptionner, traiter et démoduler un signal radio a déjà été traité dans la partie \emph{Test des performances du récepteur SDR AIRSPY-R2}. A partir de cette base, une autre chaîne de réception radio numérique a été développée pour tester la réception du signal satellite \emph{NOAA-19} avec le récepteur SDR \emph{AIRSPY-R2}. Cette chaîne est illustrée sur l'image~\underline{\color{blue}\ref{flowgraph-airspy}} ci-après.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=5cm]{flowgraph-airspy.png}
+	\caption{\label{flowgraph-airspy} \underline{Le flow-graph Gnuradio pour le récepteur SDR AIRSPY-R2}}
+\end{figure}
+La figure~\underline{\color{blue}~\ref{constellation}}, ci-après, illustre la constellation du signal reçu par le satellite NOAA-19 modulé en amplitude sur 256 niveaux différents et obtenue à l'aide du bloc \emph{WX GUI Constellation Sink}.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=5cm,height=3cm]{constellation.png}
+	\caption{\label{constellation} \underline{Constellation du signal émis par le satellite NOAA-19}}
+\end{figure}
+\subsubsection{Le bloc \emph{rtl-sdr}}
+\noindent Ce bloc est relié au récepteur SDR \emph{AIRSPY-R2}. Le taux d'échantillonnage du récepteur SDR est réglé à 2.5 MSPS (Mega Samples Per Second). C'est la valeur minimum supporté par le récepteur SDR \emph{AIRSPY-R2}. Le taux d'échantillonnage du récepteur SDR \emph{DX-PATROL} était lui de 2 MSPS. Un taux d'échantillonnage trop élevé, risquerait de faire surchauffer la Raspberry PI lors de l'exécution du \emph{flow-graph} Gnuradio et de ne rien changer à la qualité du signal décodé.
+~\\Le gain du récepteur \emph{AIRSPY-R2} peut être contrôlé à l'aide du champs \emph{RF GAIN (dB)}. En cas de mauvaise réception du signal, le gain peut être augmenté jusqu'à 30 dB. Au-delà de cette valeur le gain du plancher de bruit se rapproche trop de celui de la fréquence à écouter.
+~\\La fréquence de réception est réglée à l'aide ce bloc. Elle est mise à la valeur de 137.1 MHz pour la réception du signal du satellite \emph{NOAA-19}.
+\subsubsection{Les blocs \emph{Rational Resampler}}
+\noindent Ces blocs permettent de reéchantillonner le signal qui leur est passé en entrée. Le premier bloc diminue l'échantillonnage afin de faciliter la démodulation du signal par le bloc \emph{WBFM Receive}.
+Le deuxième bloc \emph{Rational Resampler} sert à reéchantillonner le signal à la fréquence à laquelle fonctionne la plupart des cartes sons afin de pouvoir écouter le signal si on le souhaite.
+\subsubsection{Le bloc \emph{WBFM Receive}}
+\noindent Le filtrage et la transposition en fréquence plus basse du signal est effectué de manière analogique en amont de la transformation du signal en données logique par le récepteur SDR par le filtre passe-bande et le LNA. Il ne reste donc plus qu'à démoduler le signal à l'aide de ce bloc gnuradio conçu spécialement pour démoduler un signal radio. Ce bloc effectue des calculs de différence d'amplitudes (ou de phases mais le signal du satellite NOAA-19 est modulé en amplitude) entre le Kième sample et le (K-1)ième sample, le tout multiplié par le gain. Le code C++ de ce bloc est accessible dans les fichiers sources du logiciel Gnuradio pour comprendre son fonctionnement.
+\subsubsection{Le bloc \emph{Wav File Sink}}
+\noindent Ce bloc permet d'enregistrer le signal démoduler et échantillonné à la fréquence de 48 KHz sous la forme d'un fichier \emph{.wav}. Néanmoins il est apparu que ce bloc ne fonctionne pas comme attendu. A la place de créer un fichier \emph{.wav} c'est un fichier \emph{.raw} qu'il génère. Afin de se rendre compte de ce mauvais fonctionnement, l'application \emph{Audacity} disponible sous la distribution Linux a été utilisée pour analyser la nature du fichier créé par le bloc \emph{Wav File Sink}. Cette application a permis de montrer que le fichier créé par ce bloc n'était pas un fichier \emph{.wav} car il ne comprend aucun \emph{header} permettant de l'identifier comme tel.
+\subsection{Le script python \emph{airspy\_receiver.py}}
+~\\\indent Le script python du \emph{flow-graph} Gnuradio précédemment créé a été généré afin de pouvoir inclure ce script dans le programme d'automatisation de la chaîne de réception radio. Plusieurs options on été rajoutées à ce script afin de faciliter son utilisation.
+~\\L'image~\underline{\color{blue}~\ref{python-airspy}}, ci-après, illustre le \emph{helper} et les options du script \emph{airspy\_receiver.py}.
+~\\Ce script remplace donc le script Shell faisant appel au programme \emph{rtl\_fm} dans le programme \emph{Svom-FM}.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=3cm]{python-airspy.png}
+	\caption{\label{python-airspy} \underline{Helper du script python airspy\_receiver.py}}
+\end{figure}
 \chapter{L'application \emph{spring-vhf-predict}}
 L'obtention des caractéristiques des passages du satellite \emph{NOAA-19} permettent essentiellement d'avoir accès aux horaires de chaque passage du satellite au dessus d'un point géographique donné ainsi qu'à l'élévation maximale du satellite lors du passage considéré. A l'aide de ces données, la chaîne de réception radio va pouvoir être testée avec la réception des données transmises par le satellite \emph{NOAA-19}.
 ~\\ Une application appelée \emph{spring-vhf-predict} a été créée afin de pouvoir accéder aux horaires des passages du satellite \emph{NOAA-19} et de pouvoir en sauvegarder les caractéristiques des passages dans une base données.
@@ -384,12 +499,12 @@ L'obtention des caractéristiques des passages du satellite \emph{NOAA-19} perme
 	\includegraphics[width=15cm,height=7cm]{BSON-mongo.png}
 	\caption{\label{BSON-mongo} \underline{Format d'un document sous Mongo}}
 \end{figure}
-~\\Dans cet exemple, la collection \emph{stations} ne contient qu'un seul document. Les attributs de chaque \emph{document} sont les attributs définis par l'utilisateur lors de la création de la base de données (\emph{altitude}, \emph{latitude}, \emph{longitude}, \emph{name} et \emph{Timezone}) ainsi que les requêtes \emph{http}s permettant d'accéder au \emph{document} dans la base de données (par exemple avec l'utilitaire \emph{curl} sous Linux).
+~\\\noindent Dans cet exemple, la collection \emph{stations} ne contient qu'un seul document. Les attributs de chaque \emph{document} sont les attributs définis par l'utilisateur lors de la création de la base de données (\emph{altitude}, \emph{latitude}, \emph{longitude}, \emph{name} et \emph{Timezone}) ainsi que les requêtes \emph{http}s permettant d'accéder au \emph{document} dans la base de données (par exemple avec l'utilitaire \emph{curl} sous Linux).
 \subsubsection{Prise en main de Mongo}
 \noindent La base de données \emph{Mongo} est simple d'utilisation lorsque l'on souhaite créer une base de données qui ne contienne pas trop de références à d'autres objets de la base (comme les clefs primaires et secondaires dans une base de données de type \emph{sql}). De plus, une fois créée, une base de données \emph{Mongo} utilisée par une application peut être modifiée sans devoir recompiler cette dernière après chaque modification de la base de donénes. Enfin, elle est compatible avec une utilisation du server JAVA \emph{SPRING} pour développer une base de données en classes JAVA. Les instructions entre \emph{SPRING} et \emph{Mongo} pour la création et la gestion des \emph{collections} se fait à l'aide d'un système d'annotations incluses directement dans les classes JAVA de l'application.
-\section{L'application \emph{spring-vhf-predict}}
+\section{L'architecture de l'application \emph{spring-vhf-predict}  \color{white}. .}
 ~\\\indent Dans le but d'automatiser le prototype de chaîne de réception radio recevant les données du satellite \emph{NOAA-19} dans un intervalle de temps donné, les caractéristiques de chaque passage du satellite doivent être acquises dans cet intervalle de temps et enregistrées dans une base de données afin de pouvoir les consulter à tout moment pour lancer l'acquisition par la chaîne et pouvoir obtenir des informations pouvant aider à identifier des problèmes lors de la réception d'un signal de mauvaise qualité.
-~\\\\Pour cela, une application appelée \emph{spring-vhf-predict} a été développée afin de satisfaire à ce besoin. L'image~\underline{\color{blue}\ref{archi-spring}}, ci-après, illustre l'architecture de cette application.
+~\\\\Pour cela, une application appelée \emph{spring-vhf-predict} a été développée afin de satisfaire à ce besoin. L'image~\underline{\color{blue}\ref{archi-spring}}, ci-après, illustre l'architecture de cette application encadrée dans le carré pointillé bleu.
 ~\\
 \begin{figure}[H]
 	\centering
@@ -399,7 +514,7 @@ L'obtention des caractéristiques des passages du satellite \emph{NOAA-19} perme
 \end{figure}
 ~\\\indent L'application \emph{spring-vhf-predict} nécessite un serveur pour fonctionner et recevoir les requêtes de l'utilisateur. Elle se base sur l'architecture \emph{REST} afin de pouvoir communiquer entre le côté \emph{client} et le côté \emph{server}.
 \subsection{L'application côté server S.J.T.S - \emph{Server Java Tomcat Spring}}
-~\\\indent L'application est développée en classes et interfaces JAVA. Le conteneur web \emph{Tomcat} va permettre de pouvoir créer dynamiquement des données pendant l'exécution de l'application sur le server \emph{Spring}. 
+~\\\indent L'application est développée en classes et interfaces JAVA. Le conteneur web \emph{Tomcat} va permettre de pouvoir créer dynamiquement des données pendant l'exécution de l'application sur le server \emph{Spring} sans devoir recompiler l'application. 
 ~\\\\Les différentes classes JAVA de l'application côté server sont les suivantes:
 ~\\
 \begin{itemize}
@@ -460,7 +575,7 @@ L'image~\underline{\color{blue}~\ref{requete}} illustre la requête http au serv
 \noindent L'exécution de cette requête http fait appelle à plusieurs fonctions principales définies dans cette même classe JAVA, \emph{StationController.java}.
 ~\\Ces fonctions sont les suivantes:
 \begin{itemize}
- \item[$\bullet$] \emph{checkInput}, permettant de vérifier la validité des arguments \emph{name}, \emph{elevation}, \emph{unix\_date\_start}, \emph{unix\_date\_end} et \emph{save} passés en paramètre de la requête http.
+ \item[$\bullet$] \emph{checkInput}, permettant de vérifier la validité des arguments \emph{name}, \emph{elevation}, \emph{unix\_date\_start}, \emph{unix\_date\_end} et \emph{save} passés en paramètres de la requête http.
  \item[$\bullet$] \emph{changeUtcTimePass}, change l'heure des résultats des prédictions de UTC+00 (donnés par \emph{PREDICT}) à UTC+02 (TimeZone du côté client et fournie par le paramètre \emph{TimeZone} de la station de référence dans la base de données \emph{Mongo}).
  \item[$\bullet$] \emph{updateTLEFiles}, met à jour les fichiers \emph{TLE} sur lesquels \emph{PREDICT} se base pour effectuer les prédictions à partir de la base de données accessible à l'url \emph{http://celestrak.com/NORAD/elements/noaa.txt}.
  \item[$\bullet$] \emph{filterPasses}, filtre les passages fournis par \emph{PREDICT} en ne prenant que ceux dont l'élévation maximale est au-delà du paramêtre \emph{elevation} de la requête http.
@@ -471,7 +586,7 @@ L'image~\underline{\color{blue}~\ref{requete}} illustre la requête http au serv
 Tout le processus d'obtention des caractéritiques des passages satellites s'effectue du côté server afin de limiter les exécutions du côté client tel que sur la Raspberry PI qui aura le rôle du client lors de l'utilisation de cette application.
 \subsubsection{La base de données \emph{Mongo}}
 \noindent Cette base de données contient deux collections \emph{passages} et \emph{collections}. 
-~\\Un attribut appelé \emph{creationTime} a été ajouter aux attributs des objets JAVA \emph{Passage} et \emph{Sation} lors de leur enregistrement dans la base de données afin de permettre un suivi des actions effectuées dans la base. 
+~\\Un attribut appelé \emph{creationTime} a été ajouté aux attributs des objets JAVA \emph{Passage} et \emph{Sation} lors de leur enregistrement dans la base de données afin de permettre un suivi des actions effectuées dans la base. 
 ~\\Elle est sécurisée par une authentification utilisateur à fournir au démarrage de l'application \emph{spring-vhf-predict} pour pouvoir être utilisée. Cette identification consiste en un nom d'utilisateur associé à un mot de passe. 
 \subsubsection{L'installation de l'application côté server}
 \noindent Un fichier de configuration des données utilisateurs a été créé spécialement pour que l'utilisateur de l'application puisse rentrer ses informations d'identification à sa base de données \emph{Mongo} lors du lancement de l'application. Le fichier \emph{README.md}, inclu au répertoire de versions \emph{git} de l'application, explique entièrement la marche à suivre pour installer l'application \emph{spring-vhf predict} et paramétrer ses identifiants. Un fichier \emph{makefile} a même été créé pour automatiser le processus d'installation une fois que toutes les dépendances listées dans le fichier \emph{README.md} ont été installées du côté server.
@@ -484,9 +599,9 @@ Tout le processus d'obtention des caractéritiques des passages satellites s'eff
 	\includegraphics[width=12cm,height=5cm]{helper.png}
 	\caption{\label{helper} \underline{Script PythonPredict.py - Côté client de l'application}}
 \end{figure}
-Le script s'exécute via la commande suivante:
+\noindent Le script s'exécute via la commande suivante:
 ~\\\\$ ./PythonPredict.py\ -n\ Saclay\ -t\ 20\ -sd\ 08/08/16\ -sh\ 09:00\ -ed\ 15/08/16\ -eh\ 23:00\ -S\ -I\ XXX.XXX.XX.200:8000 $
-~\\\\Cette commande va recevoir les caractéristiques des passages du satellite NOAA-19 ayant une élévation maximale au dessus de 20° du 08/08/16 à 09:00 au 15/08/16 à 23:00 à la station nommée \emph{Saclay}. Le serveur à qui effectuer cette demande est identifié par son adresse IP et son prt d'écoute avec l'option \emph{-I}.
+~\\\\Cette commande va recevoir les caractéristiques des passages du satellite NOAA-19 ayant une élévation maximale au dessus de 20° du 08/08/16 à 09:00 au 15/08/16 à 23:00 à la station nommée \emph{Saclay}. Le serveur à qui effectuer cette demande est identifié par son adresse IP et son port d'écoute avec l'option \emph{-I} IP:port. 
 ~\\L'image~\underline{\color{blue}\ref{clientresult}}, ci-après, illustre le résultat de la commande ci-dessus retourné par l'application \emph{spring-vhf-predict}.
 \begin{figure}[H]
 	\centering
@@ -494,17 +609,45 @@ Le script s'exécute via la commande suivante:
 	\includegraphics[width=12cm,height=5cm]{clientresult.png}
 	\caption{\label{clientresult} \underline{Résultats de l'exécution du script PythonPredict.py côté client}}
 \end{figure}
-Le nombre de paramètres sur les prédictions des passages satellites fournis à l'utilisateur du côté client comparé à ceux renvoyés par le logiciel \emph{PREDICT} a été volontairement réduit afin d'en extraire uniquement ceux ayant une importance pour l'automatisation de la chaîne de réception radio. 
-\chapter{Utilisation du récepteur AIRSPY dans le processus d'automatisation de la chaîne}
-
-\chapter{La mise en commun des différents scripts pour l'automatisation de la chaîne}
-
-
+\noindent Le nombre de paramètres sur les prédictions des passages satellites fournis à l'utilisateur du côté client comparé à celui renvoyé par le logiciel \emph{PREDICT} a été volontairement réduit afin d'en extraire uniquement ceux ayant une importance pour l'automatisation de la chaîne de réception radio. 
+\chapter{L'automatisation de la chaîne de réception radio}
+Le prototype de chaîne de réception radio destinée à être testée avec la réception du signal satellite \emph{NOAA-19} est automatisé selon l'architecture illustrée ci-après.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=15cm,height=8cm]{spring-vhf-predict.png}
+	\caption{\label{} \underline{Automatisation de la chaîne de réception radio}}
+\end{figure}
+\noindent L'application \emph{spring-vhf-predict} fournit les horaires de passages dans l'intervalle de temps donné en paramètre du script python \emph{PredictClient} par l'utilisateur. Puis le programme \emph{Svom-FM} va lancé l'acquisition des données lors de chaque passage du satellite.
+~\\\\Afin de lancer l'acquisition des données par le programme \emph{Svom-FM} à chaque horaire de passage du satellite \emph{NOAA-19}, l'utilitaire \emph{at} disponible sous n'importe quelle distribution Linux, est utilisé.
+\section{Le programme \emph{at}}
+~\\\indent L'utilitaire \emph{at} permet de lancer l'excution d'un programme, dont l'executable lui est fourni en paramètre, a un horaire également donné en paramètre du programme at.
+~\\L'image~\underline{\color{blue}\ref{test-at}}, ci-après, illustre un exemple d'utilisation du programme \emph{at} appliqué à la création d'un fichier nommé \emph{test\_at.py}.
+\begin{figure}[H]
+	\centering
+	\itshape
+	\includegraphics[width=10cm,height=2cm]{test-at.png}
+	\caption{\label{test-at} \underline{Exemple d'utilisation du programme at}}
+\end{figure}
+\noindent Un fichier appelé \emph{test\_at.py} a donc été créé dans le répertoire courant à l'horaire indiqué à \emph{at}, c'est à dire dans cet exemple à 13:07.
+~\\\\Le programme \emph{at} est entièrement utilisable en lignes de commandes via un terminal ce qui permet de pouvoir rédiger un script Shell permettant d'appeler \emph{at} en lignes de commandes. Ce script est destiné à être inclu dans le processus d'automatisation de la chaîne de réception radio.
+\section{Le script Shell incluant l'utilisation de l'utilitaire \emph{at}}
+~\\\indent Afin de déclencher le programme \emph{Svom-FM} lors de chaque passage du satellite \emph{NOAA-19}, un script Shell a été développé faisant appel à l'utilitaire at.
+~\\\\Ce script va simplement effectué une boucle sur tous les horaires de passages fournis par l'application \emph{spring-vhf-predict} et déclencher l'exécution du programme \emph{Svom-FM} au début de chaque passage pour ensuite stopper l'acquisition des données à chaque horaire de fin de passage.
+~\\\\Le programme \emph{Svom-FM} va enfin enregistrer tous les fichier audio dans un répertoire appelé \emph{data} situé sur la Raspberry PI et va décoder chaque fichier audio contenu dans ce répertoire en image APT.
+\part{Conclusions de ce stage}
+Au final ce stage m'aura permis d'appréhender tous les éléments qui constituent une chaîne de réception radio VHF.
+~\\\\Même si la durée de ce stage ne m'a pas permis de pouvoir contribuer à l'amélioration de la partie analogique de la chaîne de réception radio, l'automatisation de la chaîne et l'installation du récepteur SDR AIRSPY-R2 ainsi que l'installation de l'environnement numérique de la carte Raspberry PI destinée à traiter les données reçues par l'antenne \emph{Turnstile}, m'ont permis d'apprendre énormément en informatique et de compléter ainsi ma formation d'ingénieur plus spécialisée en électronique et en transmission du signal.
+Une démarche d'approndissement de mes connaissances a dû être mise en place pour pouvoir développer les différents programmes de la chaîne de réception radio. Pour cela, mon responsable de stage M. Jean-Paul Lefèvre ainsi que l'un des membres du service Sédi, M. Iacopo Breschi, m'ont beaucoup aidé durant ce stage notamment pour me familiariser avec le système d'annotations de \emph{SPRING} pendant la phase d'automatisation de la chaîne de réception radio.
+~\\\\Le fait de participer à un projet spatiale d'envergure internationale s'est avéré être d'un grand intérêt tant sur le plan scientifique que sur le plan organisationnel d'un tel projet.
+~\\\\Ce stage m'a également permis de découvrir le fonctionnement et l'organisation propre à un centre de recherche. J'ai par ailleurs eu l'occasion de pouvoir enrichir ma culture scientifique en assistant à des présentations de projets ou en visitant des laboratoires présent sur le site du CEA.
 
 
 
 \setcounter{part}{-5}
 \part{Annexes}
+\setcounter{chapter}{0}
+\setcounter{section}{0}
 \section{Les récepteurs SDR}
 \subsection{Le récepteur \emph{DX-PATROL}}
 La source de cette fiche technique est à l'adresse web \emph{http://www.dxpatrol.pt/images/Docs/ DXpatrolSDRradioMKIII.pdf}.
@@ -538,7 +681,7 @@ La source de cette fiche technique est à l'adresse web \emph{http://airspy.com/
  array_fft_abs = numpy.abs(array_fft_centre) # Ne considère que le module du nombre complexe de Fourier calculé avant
 \end{python}
 \setcounter{part}{-6}
-\part{Sources}
+\part{Bibliographie}
 \label{Sources}
 \appendix
 
@@ -551,7 +694,24 @@ La source de cette fiche technique est à l'adresse web \emph{http://airspy.com/
 \item[$\bullet$] http://www.qsl.net/kd2bd/predict.html
 \item[$\bullet$] http://kmkeen.com/rtl-demod-guide/
 \item[$\bullet$] https://www.mongodb.com/fr
+\item[$\bullet$] http://sdr.osmocom.org/trac/wiki/rtl-sdr
+\item[$\bullet$] https://www.raspberrypi.org/products/raspberry-pi-3-model-b/
+\item[$\bullet$] Documentation Svom, CEA de Saclay
+\item[$\bullet$] http://www.cea.fr/
+\item[$\bullet$] http://irfu.cea.fr/Phocea/Vie\_des\_labos/Ast/ast\_service.php?id\_unit=5
 \end{description} 
+\setcounter{part}{-7}
+
+\part{Glossaire}
+\begin{description}
+ \item[$\bullet$] SAP: Service d'Astrophysique
+ \item[$\bullet$] Sédi: Service d'électronique des détecteurs et de l'informatique
+ \item[$\bullet$] Irfu: Institut de recherche sur les lois fondamentales de l'univers
+ \item[$\bullet$] CEA: Commissariat à l'énergie atomique et aux énergies alternatives
+ \item[$\bullet$] MSPS: Mega Samples Per Second
+ \item[$\bullet$] Svom: Space-based multiband astronomical Variable Objects Monitor
+ \item[$\bullet$] SDR : Software Defined Radio
+\end{description}
 
 
 \end{document}
